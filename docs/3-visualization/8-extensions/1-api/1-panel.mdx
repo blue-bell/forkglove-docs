@@ -246,6 +246,29 @@ Use `context.layout.addPanel` to add a sibling panel of a given panel type (e.g.
 
 If `updateIfExists` is set to true, this will update a sibling panel of the same panel type, if it already exists in the layout.
 
+`updateIfExists` is supported for the following panel types:
+
+- `3D`
+- `Data Source Info`
+- `Diagnostics (ROS)`
+- `Gauge`
+- `Image`
+- `Indicator`
+- `Log`
+- `Map`
+- `Parameters`
+- `Plot`
+- `Publish`
+- `Raw Messages`
+- `Service Call`
+- `State Transitions`
+- `Tab`
+- `Table`
+- `Teleop`
+- `Topic Graph`
+- `User Scripts`
+- `Variable Slider`
+
 `getState` is set to a function that returns the state for the added or updated panel. When updating an existing panel, the existing state will be passed in as `getState`'s first argument.
 
 ```tsx
