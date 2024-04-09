@@ -284,22 +284,39 @@ Configure generic rendering properties and viewport properties.
 | **Mesh up axis**               | Direction of “up” when loading meshes (STL, OBJ) without orientation info ("Y-up", "Z-up") |
 | **Sync camera**                | Sync the camera states of multiple 3D panels                                               |
 
-#### View
+### View
 
 Configure the camera settings.
 
-| field           | description                                                                                                |
-| --------------- | ---------------------------------------------------------------------------------------------------------- |
-| **Distance**    | Distance of camera from viewport center (i.e. zoom level)                                                  |
-| **Perspective** | Toggles between 3D ("on") and 2D ("off") view of the scene. The 2D view orients the camera towards z-down. |
-| **Target X**    | x-coordinate of viewport center                                                                            |
-| **Y**           | y-coordinate of viewport center                                                                            |
-| **Z**           | z-coordinate of viewport center                                                                            |
-| **Theta**       | Camera's theta                                                                                             |
-| **Phi**         | Camera's phi                                                                                               |
-| **Y-Axis FOV**  | Camera's field of vision on y-axis                                                                         |
-| **Near**        | Camera frustum near plane                                                                                  |
-| **Far**         | Camera frustum far plane                                                                                   |
+| field           | description                                                                                                                                                                                           |
+| --------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Distance**    | Distance of camera from viewport center (i.e. zoom level)                                                                                                                                             |
+| **Perspective** | Toggles between 3D ("on") and 2D ("off") view of the scene. The 2D view orients the camera towards z-down.                                                                                            |
+| **Target**      | Translational offset from the origin of the display frame                                                                                                                                             |
+| **Theta**       | Azimuthal angle offset from the origin of the display frame in degrees                                                                                                                                |
+| **Phi**         | Polar angle offset from the origin of the display frame in degrees                                                                                                                                    |
+| **Y-Axis FOV**  | Vertical field of view in degrees                                                                                                                                                                     |
+| **Near**        | Near clipping plane distance                                                                                                                                                                          |
+| **Far**         | Far clipping plane distance                                                                                                                                                                           |
+| **Log depth**   | Enable [logarithmic depth buffer](https://www.gamedeveloper.com/programming/logarithmic-depth-buffer) for more uniform depth precision. May result in rendering artifacts or performance degradation. |
+
+#### Interaction of log depth and near/far plane settings
+
+The **Near**, **Far**, and **Log depth** settings are interrelated. When using a very small **Near** value or a large **Far** value, enabling **Log depth** may reduce visual artifacts. For example, in the video below:
+
+- The left panel does not use logarithmic depth, and it has a near clipping plane of 1.0. The grids render smoothly, but objects close to the viewer are clipped.
+- The middle panel does not use logarithmic depth, and has a near plane of 0.01. The viewer can get closer to objects without clipping, but rendering artifacts (z-fighting) appear between multiple grids.
+- The right panel enables the new logarithmic depth setting. This avoids z-fighting by providing more depth precision for the grids, while still allowing a near plane value of 0.01 for reduced clipping.
+
+<video
+  autoPlay
+  loop
+  muted
+  playsInline
+  src="/img/docs/visualization/panels/3d/logdepth.webm"
+  poster="/img/docs/visualization/panels/3d/logdepth.webp"
+  style={{ width: "100%" }}
+/>
 
 ### Transforms
 
@@ -307,7 +324,7 @@ A robotics system produces many messages describing its observations of the worl
 
 Transforms define the spacial relationships between two coordinate frames at a given time. To render objects into the scene, there must exist a transform path from the object's coordinate frame to the display frame.
 
-Visualize [transform frames](#transforms-1) to debug why elements may not be rendering where expected.
+Visualize [transform frames](#transforms) to debug why elements may not be rendering where expected.
 
 ![transforms](/img/docs/visualization/panels/3d/transforms.png)
 
@@ -321,7 +338,7 @@ Transform preloading in the 3D panel ensures an accurate scene by loading transf
 
 #### Troubleshooting
 
-When working with live sources where time synchronicity cannot be achieved, it is recommended to have the server publish it's `Time` according to the [Foxglove Websocket Protocol](https://github.com/foxglove/ws-protocol/blob/main/docs/spec.md#time). Otherwise if the server time is ahead of the visualization app, certain messages in the 3D panel will display immediately but coordinate frame state can lag behind as the app uses its wall time instead of the server time.
+When working with live sources where time synchronicity cannot be achieved, it is recommended to have the server publish its `Time` according to the [Foxglove Websocket Protocol](https://github.com/foxglove/ws-protocol/blob/main/docs/spec.md#time). Otherwise if the server time is ahead of the visualization app, certain messages in the 3D panel will display immediately but coordinate frame state can lag behind as the app uses its wall time instead of the server time.
 
 #### Settings
 
