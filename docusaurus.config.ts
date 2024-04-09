@@ -1,16 +1,18 @@
+import type { Options as PluginClientRedirectsOptions } from "@docusaurus/plugin-client-redirects";
+import type * as PresetClassic from "@docusaurus/preset-classic";
 import { Config } from "@docusaurus/types";
-import { themes } from "prism-react-renderer";
-import "redocusaurus";
-
-import extensionApiDocsPlugin from "./src/plugins/extension-api-docs";
+import extensionApiDocsPlugin from "@foxglove/plugin-extension-api-docs";
 import foxgloveSchemasPlugin, {
   generateFoxgloveSchemaRedirects,
-} from "./src/plugins/foxglove-schemas";
+} from "@foxglove/plugin-foxglove-schemas";
+import { config as dotenvConfig } from "dotenv";
+import { themes } from "prism-react-renderer";
+import type { PresetOptions as RedocusaurusPresetOptions } from "redocusaurus";
+import "redocusaurus";
 
-// eslint-disable-next-line
-require("dotenv").config();
+dotenvConfig();
 
-const docusaurusConfig: Config = {
+export default {
   title: "Foxglove | Docs",
   favicon: "img/favicon.ico",
 
@@ -55,7 +57,7 @@ const docusaurusConfig: Config = {
           blogSidebarTitle: "Recent releases",
           showReadingTime: false,
         },
-      } satisfies import("@docusaurus/preset-classic").Options,
+      } satisfies PresetClassic.Options,
     ],
     [
       "redocusaurus",
@@ -70,7 +72,7 @@ const docusaurusConfig: Config = {
         theme: {
           primaryColor: "#9480ed",
         },
-      } satisfies import("redocusaurus").PresetOptions,
+      } satisfies RedocusaurusPresetOptions,
     ],
   ],
 
@@ -84,7 +86,7 @@ const docusaurusConfig: Config = {
           ...generateFoxgloveSchemaRedirects(),
           { from: "/docs/release-notes", to: "/changelog" },
         ],
-      } satisfies import("@docusaurus/plugin-client-redirects").Options,
+      } satisfies PluginClientRedirectsOptions,
     ],
   ],
 
@@ -159,7 +161,5 @@ const docusaurusConfig: Config = {
             searchPagePath: "search", // optional; false to disable
           }
         : undefined,
-  } satisfies import("@docusaurus/preset-classic").ThemeConfig,
-};
-
-export = docusaurusConfig;
+  } satisfies PresetClassic.ThemeConfig,
+} satisfies Config;

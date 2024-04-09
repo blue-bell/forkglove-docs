@@ -14,15 +14,7 @@ let wasGeneratedOnce = false;
  * to re-generate schema docs in watch mode, restart the server.
  */
 export default async function (_context: LoadContext, _options: unknown): Promise<Plugin> {
-  const dir = path.join(
-    __dirname,
-    "..",
-    "..",
-    "..",
-    "docs",
-    "3-visualization",
-    "2-message-schemas",
-  );
+  const dir = path.join(__dirname, "..", "..", "docs", "3-visualization", "2-message-schemas");
 
   const existingFiles = await fs.readdir(dir).catch(() => {
     throw new Error(

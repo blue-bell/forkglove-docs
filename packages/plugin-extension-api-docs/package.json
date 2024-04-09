@@ -1,0 +1,6 @@
+{
+  "private": true,
+  "name": "@foxglove/plugin-extension-api-docs",
+  "type": "module",
+  "exports": "./index.ts"
+}
