@@ -45,7 +45,7 @@ export default function script(event: Input<"/rosout">): Message<"rosgraph_msgs/
 }
 ```
 
-If you drag in a `.bag` file, you should now be able to inspect the `/foxglove_script/echo` topic in the [Raw Messages panel](/docs/visualization/panels/raw-messages).
+If you drag in a recording with a `/rosout` topic, you should now be able to inspect the `/foxglove_script/echo` topic in the [Raw Messages panel](/docs/visualization/panels/raw-messages).
 
 When you create a new script, you’ll be presented with some boilerplate:
 
@@ -72,6 +72,8 @@ You’ll notice a few things:
 - The `Output` type has some default properties that the `script` function's output must adhere to
 
 `Input` is a generic type, meaning that it takes a parameter in order to be used. It is left empty on purpose as you'll need to populate it with the name of your input topic, e.g. `Input<"/rosout">`.
+
+> Note: The input `event` is read-only. Do not modify the `event` object.
 
 As for the `Output` type, you can either manually type out your output with the properties you care about (i.e. what is available in the boilerplate) or use one of the dynamically generated types from the `Message` type imported above. For instance, if you want to publish an array of markers, you can return the type `Message<"visualization_msgs/MarkerArray">`.
 
@@ -138,6 +140,8 @@ export default function script(event: Input<"/rosout"> | Input<"/tf">): { data: 
 #### Using global variables
 
 The `script` function will receive all of the [variables](/docs/visualization/variables) as an object every time it is called. Each time a new message is received, the `script` function will be re-run with the latest variable values:
+
+> Note: Global variables are read-only on user-scripts. Do not modify the `globalVars` parameter.
 
 ```typescript
 import { Input, Message } from "./types";
