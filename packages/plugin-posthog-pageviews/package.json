@@ -1,0 +1,6 @@
+{
+  "private": true,
+  "name": "@foxglove/plugin-posthog-pageviews",
+  "type": "module",
+  "exports": "./index.ts"
+}

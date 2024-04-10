@@ -1,4 +1,12 @@
 // -*- jsonc -*-
 {
-  "extends": "@foxglove/tsconfig/base"
+  "extends": "@foxglove/tsconfig/base",
+  "compilerOptions": {
+    // From @docusaurus/tsconfig https://github.com/facebook/docusaurus/blob/main/packages/docusaurus-tsconfig/tsconfig.json
+    "noEmit": true,
+    "jsx": "preserve",
+    "module": "ES2022",
+    "moduleResolution": "bundler",
+    "types": ["node", "@docusaurus/module-type-aliases", "@docusaurus/theme-classic"]
+  }
 }

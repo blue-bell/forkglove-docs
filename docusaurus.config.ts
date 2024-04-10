@@ -5,6 +5,7 @@ import extensionApiDocsPlugin from "@foxglove/plugin-extension-api-docs";
 import foxgloveSchemasPlugin, {
   generateFoxgloveSchemaRedirects,
 } from "@foxglove/plugin-foxglove-schemas";
+import posthogPageviewsPlugin from "@foxglove/plugin-posthog-pageviews";
 import { config as dotenvConfig } from "dotenv";
 import { themes } from "prism-react-renderer";
 import type { PresetOptions as RedocusaurusPresetOptions } from "redocusaurus";
@@ -36,7 +37,6 @@ export default {
     defaultLocale: "en",
     locales: ["en"],
   },
-  headTags: [],
 
   presets: [
     [
@@ -79,6 +79,7 @@ export default {
   plugins: [
     extensionApiDocsPlugin,
     foxgloveSchemasPlugin,
+    process.env.POSTHOG_KEY && [posthogPageviewsPlugin, { apiKey: process.env.POSTHOG_KEY }],
     [
       "@docusaurus/plugin-client-redirects",
       {
@@ -88,7 +89,7 @@ export default {
         ],
       } satisfies PluginClientRedirectsOptions,
     ],
-  ],
+  ].filter(Boolean),
 
   themeConfig: {
     // Replace with your project's social card
