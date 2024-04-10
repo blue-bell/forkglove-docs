@@ -13,10 +13,11 @@ Supports live [ROS 1](/docs/connecting-to-data/frameworks/ros1#live-data) and [R
 
 ### General
 
-| field            | description                                                             |
-| ---------------- | ----------------------------------------------------------------------- |
-| **Service name** | Name of service to make a request to                                    |
-| **Layout**       | Positioning of request and response inputs ("Vertical" or "Horizontal") |
+| field            | description                                                                              |
+| ---------------- | ---------------------------------------------------------------------------------------- |
+| **Service name** | Name of service to make a request to                                                     |
+| **Layout**       | Positioning of request and response inputs ("Vertical" or "Horizontal")                  |
+| **Editing mode** | Whether you want to edit the request message and see the response message; On by default |
 
 ### Button
 
