@@ -1,0 +1,51 @@
+---
+date: "2024-04-11T20:45:48"
+hide_table_of_contents: true
+---
+
+## 3D
+
+Have you ever wanted to get a 3D view of the entire world? [One of our users did](https://github.com/orgs/foxglove/discussions/941), but had some issues with [z-fighting](https://en.wikipedia.org/wiki/Z-fighting) that kept the visualization within Foxglove from looking as sharp as it should. We think that outer-space fighting should be limited to intergalactic battles, so we added a **new setting to enable a [logarithmic depth buffer](https://www.gamedeveloper.com/programming/logarithmic-depth-buffer), which can improve rendering precision for large distance scales**.
+
+Using this feature may lead to a loss in rendering performance, but may be worth the price for users looking to visualize Earth-scale data, large maps, or just wanting to zoom in/out really, really far.
+
+In this example below:
+
+- The left pane does not use logarithmic depth, and it has a near clipping plane of 1.0. The grids render smoothly, but objects close to the viewer are clipped.
+- The middle pane does not use logarithmic depth, and has a near plane of 0.01. The viewer can get closer to objects without clipping, but rendering artifacts (z-fighting) appear between multiple grids.
+- The right pane enables the new logarithmic depth setting. This avoids z-fighting by providing more depth precision for the grids, while still allowing a near plane value of 0.01 for reduced clipping.
+
+<video
+  autoPlay
+  loop
+  muted
+  playsInline
+  src="/img/docs/visualization/panels/3d/logdepth.webm"
+  poster="/img/docs/visualization/panels/3d/logdepth.webp"
+  style={{ width: "100%" }}
+/>
+
+## Services
+
+The Service Call panel now has an option to hide the request and response text fields. This allows you to configure a request once up front, then invoke the service call without any distractions. We love distractions, but only the kinds that have wet noses and wagging tails.
+
+<img
+  width="1054"
+  alt="image"
+  src="https://github.com/foxglove/docs/assets/14237/c87830cc-d490-4a34-a6dc-a4cc671ef722"
+/>
+
+## JSON data sources
+
+- When using a WebSocket connection, JSON channels and services with no schema are now supported (using an empty string for the schema name and data).
+- Added support for fixed-length arrays (specified with `prefixItems`).
+
+## Stability and usability
+
+- The web application no longer encounters errors when a new version is released while the app is already open.
+- Various usability enhancements to Recordings, General and Team settings, Webhooks, data playback while buffering, and deep linking.
+- Improvements to error messages for opening incompatible files and layouts, and for WebSocket connections that encounter unexpected server behavior.
+
+---
+
+Downloads: **Linux:** deb [amd64](https://get.foxglove.dev/desktop/v2.2.0/foxglove-studio-2.2.0-linux-amd64.deb) [arm64](https://get.foxglove.dev/desktop/v2.2.0/foxglove-studio-2.2.0-linux-arm64.deb), snap [amd64](https://get.foxglove.dev/desktop/v2.2.0/foxglove-studio-2.2.0-linux-amd64.snap) | **Windows:** [Universal](https://get.foxglove.dev/desktop/v2.2.0/foxglove-studio-2.2.0-win.exe) | **Mac:** [Universal](https://get.foxglove.dev/desktop/v2.2.0/foxglove-studio-2.2.0-mac-universal.dmg)
