@@ -52,7 +52,7 @@
     "redocusaurus": "2.0.1",
     "strip-json-comments": "5.0.1",
     "ts-node": "10.9.1",
-    "typedoc": "0.25.9",
+    "typedoc": "0.25.13",
     "typescript": "5.1.6"
   },
   "browserslist": {
