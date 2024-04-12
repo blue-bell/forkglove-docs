@@ -27,7 +27,7 @@ function Badge({ plan }: { plan: PlanName }): ReactElement {
 }
 
 export default function AccountRequiredHeader({ plans }: { plans: PlanName[] }): ReactElement {
-  if (plans?.length === 0) {
+  if (plans.length === 0) {
     return <></>;
   }
   return (

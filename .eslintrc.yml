@@ -16,6 +16,9 @@ overrides:
       - plugin:@foxglove/typescript
     parserOptions:
       project: ./**/tsconfig.json
+    rules:
+      # These could theoretically be turned on (or merit investigation) but are currently noisy
+      "@typescript-eslint/restrict-template-expressions": off
 
   - files: ["*.md"]
     processor: "markdown/markdown"
