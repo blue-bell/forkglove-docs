@@ -40,7 +40,7 @@ import { Input, Message } from "./types";
 export const inputs = ["/rosout"];
 export const output = "/foxglove_script/echo";
 
-export default function script(event: Input<"/rosout">): Message<"rosgraph_msgs/Log"> => {
+export default function script(event: Input<"/rosout">): Message<"rosgraph_msgs/Log"> {
   return event.message;
 }
 ```
@@ -89,7 +89,7 @@ import { Input, Message } from "./types";
 export const inputs = ["/rosout", "/tf"];
 export const output = "/foxglove_script/echo";
 
-export default function script(event: Input<"/rosout"> | Input<"/tf">): { data: number[] } => {
+export default function script(event: Input<"/rosout"> | Input<"/tf">): { data: number[] } {
   if (event.topic === "/rosout") {
     // read event.message fields expected for /rosout messages
   } else {
@@ -116,7 +116,7 @@ const myScope: {
   rosout?: Message<"rosgraph_msgs/Log">;
 } = {};
 
-export default function script(event: Input<"/rosout"> | Input<"/tf">): { data: number[] } | undefined => {
+export default function script(event: Input<"/rosout"> | Input<"/tf">): { data: number[] } | undefined {
   const { receiveTime } = message;
   let inSync = true;
 
@@ -152,7 +152,7 @@ type GlobalVariables = { someNumericaVar: number };
 export const inputs = [];
 export const output = "/foxglove_script/";
 
-export default function script(event: Input<"/foo_marker">, globalVars: GlobalVariables): Output => {
+export default function script(event: Input<"/foo_marker">, globalVars: GlobalVariables): Output {
   if (event.message.id === globalVars.someNumericaVar) {
     // Message's id matches $someNumericaVar
   }
@@ -199,7 +199,7 @@ import { Input } from "./types";
 export const inputs = ["/state"];
 export const output = "/foxglove_script/manual_metrics";
 
-export default function script(event: Input<"/state">): { metrics: number } | undefined => {
+export default function script(event: Input<"/state">): { metrics: number } | undefined {
   if (event.message.constant === 3) {
     // Do not publish any message
     return;
