@@ -58,6 +58,8 @@ Use the syntax below to filter by metadata keys and values:
 
 A single word (e.g. `error`) will look for matching metadata keys or values.
 
+Non-alphanumeric characters can be used inside quotes (e.g. `"/weather/rain":*` or `"@my.custom.key":"10%"`).
+
 ## Links and resources
 
 - [Add events to your data](https://foxglove.dev/blog/announcing-foxglove-data-platform-events)
