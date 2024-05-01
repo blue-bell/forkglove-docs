@@ -131,6 +131,12 @@ Note that `.@derivative` will not work with scatter plots (i.e. message paths th
 
 See the [Javascript Math](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math) documentation for more details.
 
+### Reference lines
+
+To add a reference line at a constant value in a plot panel, add a series and set the message path to the constant value you would like plotted.
+
+![plot with reference value](/img/docs/visualization/panels/plot/reference-plot.webp)
+
 ## Shortcuts
 
 - Scroll – Zoom in and out horizontally
