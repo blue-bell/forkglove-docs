@@ -30,6 +30,16 @@ Alternatively, if you are sure the user has the desktop app installed, you can u
 | `https://app.foxglove.dev/{YOUR-FOXGLOVE-SLUG}/view` | https://app.foxglove.dev/{YOUR-FOXGLOVE-SLUG}/view?ds=sample-nuscenes&openIn=desktop |
 | `foxglove://open`                                    | foxglove://open?ds=sample-nuscenes                                                   |
 
+### Opening via command line
+
+You can also use pass a `foxglove://open` URL as an argument to the desktop app binary when opening via CLI. For example:
+
+```bash
+$ foxglove-studio "foxglove://open?ds=foxglove-websocket&ds.url=ws://myrobot:8765/"
+```
+
+This will open the Foxglove desktop app and connect to `ws://myrobot:8765/` over the Foxglove websocket protocol.
+
 ## Layouts
 
 To load a saved layout (personal or team):
