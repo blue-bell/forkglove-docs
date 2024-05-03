@@ -1,9 +1,9 @@
 ---
 title: Variable Slider
-description: Customize a slider to quickly update a numerical variable value.
+description: Use the variable slider to add a UI element in your layout that controls a numerical variable.
 ---
 
-Customize a slider to quickly update a numerical [variable](/docs/visualization/variables) value.
+Use the variable slider to add a UI element in your layout that controls a numerical [variable](/docs/visualization/variables).
 
 ![variable slider panel](/img/docs/visualization/panels/variable-slider/panel.webp)
 

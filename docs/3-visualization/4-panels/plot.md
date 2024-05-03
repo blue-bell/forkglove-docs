@@ -56,9 +56,9 @@ Use the panel settings to add, edit, or remove data series.
 
 ### Y-Axis
 
-Using [message path syntax](/docs/visualization/message-path-syntax), specify the path to the y-axis data you want to plot. Alternatively, enter a number to add a horizontal line at that value.
+Enter the field or slice of data you would like plotted on the y-axis using [message path syntax](/docs/visualization/message-path-syntax) as a **Series**. Entering a single number will create a horizontal line at that value.
 
-If you enter a message path that points to multiple values (e.g. `/some_topic/some_array[:].x`), the plot will display a scatter plot of points at each x-axis tick.
+If you enter a message path that points to multiple values (e.g. `/some_topic/some_array[:].x`), the plot will display multiple values each x-axis tick.
 
 Each series can be configured to display a descriptive label via the `Label` field in settings.
 
