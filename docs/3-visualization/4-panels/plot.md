@@ -37,14 +37,14 @@ When playing back local or remote data files, this panel will preload the data b
 | **Max**             | Fixed maximum value for x-axis                                                    |
 | **Range (seconds)** | Width of the panel viewport as it follows playback (in seconds); time series only |
 
-| Series           |                                                                                                                         |
-| ---------------- | ----------------------------------------------------------------------------------------------------------------------- |
-| **Message path** | Message path containing Y values for the series                                                                         |
-| **Label**        | Label displayed in the legend for the series                                                                            |
-| **Color**        | Color used to plot the series                                                                                           |
-| **Line size**    | Width of line connecting data points                                                                                    |
-| **Show lines**   | Show line connecting data points                                                                                        |
-| **Timestamp**    | Timestamp used for [message ordering](/docs/visualization/playback#message-ordering) (`Receive Time` or `Header Stamp`) |
+| Series           |                                                                                                                                                |
+| ---------------- | ---------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Message path** | Message path containing Y values for the series                                                                                                |
+| **Label**        | Label displayed in the legend for the series                                                                                                   |
+| **Color**        | Color used to plot the series                                                                                                                  |
+| **Line size**    | Width of line connecting data points                                                                                                           |
+| **Show lines**   | Show line connecting data points. (Not applicable to [reference lines](#reference-lines).)                                                     |
+| **Timestamp**    | Timestamp used for [message ordering](/docs/visualization/playback#message-ordering). (Not applicable to [reference lines](#reference-lines).) |
 
 ## User interactions
 
@@ -56,9 +56,9 @@ Use the panel settings to add, edit, or remove data series.
 
 ### Y-Axis
 
-Using [message path syntax](/docs/visualization/message-path-syntax), specify the path to the y-axis data you want to plot. Alternatively, enter a number to add a horizontal line at that value.
+Enter the field or slice of data you would like plotted on the y-axis using [message path syntax](/docs/visualization/message-path-syntax) as a **Series**. Entering a single number will create a horizontal line at that value.
 
-If you enter a message path that points to multiple values (e.g. `/some_topic/some_array[:].x`), the plot will display a scatter plot of points at each x-axis tick.
+If you enter a message path that points to multiple values (e.g. `/some_topic/some_array[:].x`), the plot will display multiple values each x-axis tick.
 
 Each series can be configured to display a descriptive label via the `Label` field in settings.
 
@@ -130,6 +130,12 @@ The following `Math` functions are available to append to your Plot panel's mess
 Note that `.@derivative` will not work with scatter plots (i.e. message paths that point to an array of values for each x-axis tick).
 
 See the [Javascript Math](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math) documentation for more details.
+
+### Reference lines
+
+To add a reference line at a constant value in a plot panel, add a series and set the message path to the constant value you would like plotted.
+
+![plot with reference value](/img/docs/visualization/panels/plot/reference-plot.webp)
 
 ## Shortcuts
 

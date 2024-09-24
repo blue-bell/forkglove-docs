@@ -244,6 +244,8 @@ context.setDefaultPanelTitle("Camera Calibration");
 
 Use `context.layout.addPanel` to add a sibling panel of a given panel type (e.g. `"RawMessages"`) to the layout.
 
+Use `extensionname.panelname` as the `type` to open a panel installed via an Extension. `extensionname` is the extension name from `package.json` and `panelname` is the name provided when the extension registers a panel.
+
 If `updateIfExists` is set to true, this will update a sibling panel of the same panel type, if it already exists in the layout.
 
 `updateIfExists` is supported for the following panel types:

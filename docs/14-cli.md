@@ -3,7 +3,7 @@ title: CLI
 description: The foxglove CLI tool helps you import, export, and interact with your data from the command line.
 ---
 
-The [`foxglove` CLI tool](https://github.com/foxglove/foxglove-cli) helps you import, export, and interact with your data from the command line.
+The [Foxglove CLI tool](https://github.com/foxglove/foxglove-cli) helps you import, export, and interact with your data from the command line.
 
 ### Installation
 
@@ -51,3 +51,7 @@ $ foxglove completion <shell> -h
 | **Recordings** | `foxglove data import ~/data/bags/gps.bag --device-id dev_drpLqjBZYUzus3gv`                                                               | `foxglove data imports list` |                                                     |
 | **Events**     | `foxglove events add --device-id dev_flm75pLkfzUBX2DH --timestamp 2022-01-01T12:00:00Z --duration-nanos 0 --metadata 'someKey:someValue'` | `foxglove events list`       |                                                     |
 | **Extensions** | `foxglove extensions publish ./my-extension.1.0.0.foxe`                                                                                   | `foxglove extensions list`   | `foxglove extensions unpublish ext_BsGXKGsZ9c4WQF1` |
+
+### Visualizing data
+
+The Foxglove CLI tool cannot directly open data in the Foxglove app, but the app binary can [accept data source parameters when opened via the command line](/docs/visualization/shareable-links#opening-via-command-line).

@@ -40,12 +40,12 @@ import { Input, Message } from "./types";
 export const inputs = ["/rosout"];
 export const output = "/foxglove_script/echo";
 
-export default function script(event: Input<"/rosout">): Message<"rosgraph_msgs/Log"> => {
+export default function script(event: Input<"/rosout">): Message<"rosgraph_msgs/Log"> {
   return event.message;
 }
 ```
 
-If you drag in a recording with a `/rosout` topic, you should now be able to inspect the `/foxglove_script/echo` topic in the [Raw Messages panel](/docs/visualization/panels/raw-messages).
+If you open a recording with a `/rosout` topic, you can now inspect the `/foxglove_script/echo` topic in the [Raw Messages panel](/docs/visualization/panels/raw-messages).
 
 When you create a new script, you’ll be presented with some boilerplate:
 
@@ -79,7 +79,7 @@ As for the `Output` type, you can either manually type out your output with the 
 
 It's not always obvious how message properties affect the visualized output – strictly typing your scripts helps you debug issues at compile time rather than at runtime. With that said, you can disable Typescript checks when working on a rough draft of your script by adding `// @ts-expect-error` on the line above the one you want to ignore.
 
-#### Using multiple input topics
+### Using multiple input topics
 
 In some cases, you will want to define multiple input topics:
 
@@ -89,7 +89,7 @@ import { Input, Message } from "./types";
 export const inputs = ["/rosout", "/tf"];
 export const output = "/foxglove_script/echo";
 
-export default function script(event: Input<"/rosout"> | Input<"/tf">): { data: number[] } => {
+export default function script(event: Input<"/rosout"> | Input<"/tf">): { data: number[] } {
   if (event.topic === "/rosout") {
     // read event.message fields expected for /rosout messages
   } else {
@@ -116,7 +116,9 @@ const myScope: {
   rosout?: Message<"rosgraph_msgs/Log">;
 } = {};
 
-export default function script(event: Input<"/rosout"> | Input<"/tf">): { data: number[] } | undefined => {
+export default function script(
+  event: Input<"/rosout"> | Input<"/tf">,
+): { data: number[] } | undefined {
   const { receiveTime } = message;
   let inSync = true;
 
@@ -134,10 +136,10 @@ export default function script(event: Input<"/rosout"> | Input<"/tf">): { data: 
   if (!inSync) {
     return { data: [] };
   }
-};
+}
 ```
 
-#### Using global variables
+### Using global variables
 
 The `script` function will receive all of the [variables](/docs/visualization/variables) as an object every time it is called. Each time a new message is received, the `script` function will be re-run with the latest variable values:
 
@@ -152,13 +154,13 @@ type GlobalVariables = { someNumericaVar: number };
 export const inputs = [];
 export const output = "/foxglove_script/";
 
-export default function script(event: Input<"/foo_marker">, globalVars: GlobalVariables): Output => {
+export default function script(event: Input<"/foo_marker">, globalVars: GlobalVariables): Output {
   if (event.message.id === globalVars.someNumericaVar) {
     // Message's id matches $someNumericaVar
   }
 
   return { data: [] };
-};
+}
 ```
 
 ### Debugging
@@ -199,7 +201,7 @@ import { Input } from "./types";
 export const inputs = ["/state"];
 export const output = "/foxglove_script/manual_metrics";
 
-export default function script(event: Input<"/state">): { metrics: number } | undefined => {
+export default function script(event: Input<"/state">): { metrics: number } | undefined {
   if (event.message.constant === 3) {
     // Do not publish any message
     return;
@@ -207,12 +209,12 @@ export default function script(event: Input<"/state">): { metrics: number } | un
   return {
     // Your data here
   };
-};
+}
 ```
 
 In Typescript, if you return without a value, it will implicitly return `undefined`. Note the union return type for the `script` function – we've indicated to Typescript that this function can return `undefined`.
 
-### Using `@foxglove/schemas`
+### Using @foxglove/schemas
 
 Import and use types from the [`@foxglove/schemas`](https://github.com/foxglove/schemas) package in user scripts:
 
