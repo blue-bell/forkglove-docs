@@ -53,27 +53,27 @@ export default {
           path: "changelog",
           routeBasePath: "changelog",
           blogTitle: "Changelog",
-          blogDescription: "Changelog | Foxglove",
+          blogDescription: "Changelog | Forklove",
           blogSidebarTitle: "Recent releases",
           showReadingTime: false,
         },
       } satisfies PresetClassic.Options,
     ],
-    // [
-    //   "redocusaurus",
-    //   {
-    //     config: "./api-docs/redocly.yaml",
-    //     specs: [
-    //       {
-    //         spec: "./api-docs/specs/v1.yaml",
-    //         route: "/api/",
-    //       },
-    //     ],
-    //     theme: {
-    //       primaryColor: "#9480ed",
-    //     },
-    //   } satisfies RedocusaurusPresetOptions,
-    // ],
+    [
+      "redocusaurus",
+      {
+        config: "./api-docs/redocly.yaml",
+        specs: [
+          {
+            spec: "./api-docs/specs/v1.yaml",
+            route: "/api/",
+          },
+        ],
+        theme: {
+          primaryColor: "#9480ed",
+        },
+      } satisfies RedocusaurusPresetOptions,
+    ],
   ],
 
   plugins: [
@@ -124,7 +124,7 @@ export default {
           position: "right",
         },
         {
-          href: "https://github.com/forkglove/docs",
+          href: "https://github.com/forkglove",
           label: "GitHub",
           position: "right",
         },
