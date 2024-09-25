@@ -1,11 +1,11 @@
 import type { Options as PluginClientRedirectsOptions } from "@docusaurus/plugin-client-redirects";
 import type * as PresetClassic from "@docusaurus/preset-classic";
 import { Config } from "@docusaurus/types";
-import extensionApiDocsPlugin from "@foxglove/plugin-extension-api-docs";
+import extensionApiDocsPlugin from "./packages/plugin-extension-api-docs";
 import foxgloveSchemasPlugin, {
   generateFoxgloveSchemaRedirects,
-} from "@foxglove/plugin-foxglove-schemas";
-import posthogPageviewsPlugin from "@foxglove/plugin-posthog-pageviews";
+} from "./packages/plugin-foxglove-schemas";
+import posthogPageviewsPlugin from "./packages/plugin-posthog-pageviews";
 import { config as dotenvConfig } from "dotenv";
 import { themes } from "prism-react-renderer";
 import type { PresetOptions as RedocusaurusPresetOptions } from "redocusaurus";
