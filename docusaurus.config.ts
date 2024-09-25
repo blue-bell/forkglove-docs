@@ -14,11 +14,11 @@ import "redocusaurus";
 dotenvConfig();
 
 export default {
-  title: "Foxglove | Docs",
+  title: "Forklove | Docs",
   favicon: "img/favicon.ico",
 
   // Set the production url of your site here
-  url: "https://docs.foxglove.dev",
+  url: "https://forkglove.vercel.app",
   // Set the /<baseUrl>/ pathname under which your site is served
   // For GitHub pages deployment, it is often '/<projectName>/'
   baseUrl: "/",
