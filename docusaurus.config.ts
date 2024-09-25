@@ -35,7 +35,7 @@ export default {
   // to replace "en" with "zh-Hans".
   i18n: {
     defaultLocale: "en",
-    locales: ["en"],
+    locales: ["en", "zh-CN"],
   },
 
   presets: [

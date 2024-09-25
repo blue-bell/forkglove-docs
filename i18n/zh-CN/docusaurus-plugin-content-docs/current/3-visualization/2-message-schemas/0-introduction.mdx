@@ -1,11 +1,11 @@
 ---
-title: Introduction
-description: Using Foxglove schemas helps you take full advantage of the platform's built-in visualizations.
+title: 介绍
+description: 使用 Foxglove 模式可以帮助您充分利用平台内置的可视化功能。
 ---
 
-Foxglove often requires incoming messages to conform to specific structures to visualize them properly. Using [Foxglove schemas](https://github.com/foxglove/schemas) helps you take full advantage of the platform's built-in visualizations.
+Foxglove 通常要求传入消息符合特定结构，以便正确可视化它们。使用 [Foxglove 模式](https://github.com/foxglove/schemas) 可以帮助您充分利用平台内置的可视化功能。
 
-### Supported formats
+### 支持的格式
 
 - [Protobuf](https://github.com/foxglove/schemas/tree/main/schemas/proto/foxglove)
 - [JSON Schema](https://github.com/foxglove/schemas/tree/main/schemas/jsonschema)
@@ -14,27 +14,27 @@ Foxglove often requires incoming messages to conform to specific structures to v
 - [TypeScript](https://github.com/foxglove/schemas/tree/main/schemas/typescript)
 - [FlatBuffers](https://github.com/foxglove/schemas/tree/main/schemas/flatbuffer)
 
-If you've already written custom messages, you can transform them into Foxglove-supported schemas using a [message converter](/docs/visualization/extensions/introduction#message-converters) extension.
+如果您已经编写了自定义消息，可以使用[消息转换器](/docs/visualization/extensions/introduction#message-converters)扩展将它们转换为 Foxglove 支持的模式。
 
-### Protobuf and JSON Schema
+### Protobuf 和 JSON Schema
 
-Copy the [`.proto` files](https://github.com/foxglove/schemas/tree/main/schemas/proto/foxglove) or [`.json` files](https://github.com/foxglove/schemas/tree/main/schemas/jsonschema) you need directly into your project, and use them to start publishing data via a [live Foxglove WebSocket connection](/docs/connecting-to-data/frameworks/custom#foxglove-websocket) or logging data to an [MCAP file](https://mcap.dev).
+将所需的 [`.proto` 文件](https://github.com/foxglove/schemas/tree/main/schemas/proto/foxglove) 或 [`.json` 文件](https://github.com/foxglove/schemas/tree/main/schemas/jsonschema) 直接复制到您的项目中，并使用它们通过 [实时 Foxglove WebSocket 连接](/docs/connecting-to-data/frameworks/custom#foxglove-websocket) 发布数据或记录数据到 [MCAP 文件](https://mcap.dev)。
 
-_NOTE: For Protobuf data, time values of type [`google.protobuf.Timestamp`](https://protobuf.dev/reference/protobuf/google.protobuf/#timestamp) or [`google.protobuf.Duration`](https://protobuf.dev/reference/protobuf/google.protobuf/#duration) will appear with `sec` and `nsec` fields (instead of `seconds` and `nanos`) in [user scripts](/docs/visualization/panels/user-scripts), [message converters](/docs/visualization/extensions/introduction#message-converters), and the rest of Foxglove, for consistency with time and duration types in other data formats._
+_注意：对于 Protobuf 数据，类型为 [`google.protobuf.Timestamp`](https://protobuf.dev/reference/protobuf/google.protobuf/#timestamp) 或 [`google.protobuf.Duration`](https://protobuf.dev/reference/protobuf/google.protobuf/#duration) 的时间值将在 [用户脚本](/docs/visualization/panels/user-scripts)、[消息转换器](/docs/visualization/extensions/introduction#message-converters) 和 Foxglove 的其他部分中显示为 `sec` 和 `nsec` 字段（而不是 `seconds` 和 `nanos`），以便与其他数据格式中的时间和持续时间类型保持一致。_
 
-You can also import JSON schemas via the [`@foxglove/schemas` npm package](https://www.npmjs.com/package/@foxglove/schemas):
+您还可以通过 [`@foxglove/schemas` npm 包](https://www.npmjs.com/package/@foxglove/schemas) 导入 JSON 模式：
 
 ```typescript
 import { CompressedImage } from "@foxglove/schemas/jsonschema";
 ```
 
-We provide WebSocket libraries for live data ([Python](https://github.com/foxglove/ws-protocol/tree/main/python), [JavaScript](https://github.com/foxglove/ws-protocol/tree/main/typescript/ws-protocol-examples), [C++](https://github.com/foxglove/ws-protocol/tree/main/cpp)), as well as MCAP writers for pre-recorded data files ([Python](https://github.com/foxglove/mcap/tree/main/python), [JavaScript](https://github.com/foxglove/mcap/tree/main/typescript), [C++](https://github.com/foxglove/mcap/tree/main/cpp)).
+我们提供用于实时数据的 WebSocket 库（[Python](https://github.com/foxglove/ws-protocol/tree/main/python)、[JavaScript](https://github.com/foxglove/ws-protocol/tree/main/typescript/ws-protocol-examples)、[C++](https://github.com/foxglove/ws-protocol/tree/main/cpp)），以及用于预录数据文件的 MCAP 写入器（[Python](https://github.com/foxglove/mcap/tree/main/python)、[JavaScript](https://github.com/foxglove/mcap/tree/main/typescript)、[C++](https://github.com/foxglove/mcap/tree/main/cpp)）。
 
-_Check out the blog post on [Recording Robocar Data with MCAP](https://foxglove.dev/blog/recording-robocar-data-with-mcap) for an example on using an [MCAP](https://mcap.dev) C++ writer to record your Protobuf data._
+_查看博客文章 [使用 MCAP 记录 Robocar 数据](https://foxglove.dev/blog/recording-robocar-data-with-mcap)，了解如何使用 [MCAP](https://mcap.dev) C++ 写入器记录您的 Protobuf 数据。_
 
 ### Empty JSON Schemas
 
-MCAP allows empty schemas for the JSON message encoding, but you must define a valid JSON schema for visualization. If you don't want to define your schema, you can specify a JSON Schema representing any object, which by default allows additional properties: `{"type": "object"}`.
+MCAP 允许 JSON 消息编码的空模式，但您必须定义一个有效的 JSON 模式以进行可视化。如果您不想定义自己的模式，可以指定一个表示任何对象的 JSON 模式，默认情况下允许附加属性：`{"type": "object"}`。
 
 ### ROS
 
@@ -58,9 +58,9 @@ msg.y = 0.7
 
 ### TypeScript
 
-Import Foxglove schemas as TypeScript types for type-checking purposes.
+将 Foxglove 模式导入为 TypeScript 类型以进行类型检查。
 
-In Foxglove's [User Scripts panel](/docs/visualization/panels/user-scripts), you can specify the schema you want with `Message<"foxglove.[SchemaName]">`:
+在 Foxglove 的[用户脚本面板](/docs/visualization/panels/user-scripts)中，您可以使用 `Message<"foxglove.[SchemaName]">` 指定所需的模式：
 
 ```typescript
 import { Input, Message } from "./types";
@@ -75,7 +75,7 @@ export default function script(event: Input<"/input/topic">): Output {
 }
 ```
 
-For your own TypeScript project, you can import the type directly from the [`@foxglove/schemas`](https://www.npmjs.com/package/@foxglove/schemas) npm package:
+对于您自己的 TypeScript 项目，您可以直接从 [`@foxglove/schemas`](https://www.npmjs.com/package/@foxglove/schemas) npm 包中导入类型：
 
 ```typescript
 import { Point2 } from "@foxglove/schemas";
@@ -83,4 +83,4 @@ import { Point2 } from "@foxglove/schemas";
 const myImage: Point2 = { x: 1, y: 2 };
 ```
 
-Import these types when working on a JavaScript WebSocket or [MCAP](https://mcap.dev) project, or when writing a custom data transformation script in Foxglove's [User Scripts panel](/docs/visualization/panels/user-scripts).
+在处理 JavaScript WebSocket 或 [MCAP](https://mcap.dev) 项目时，或在 Foxglove 的[用户脚本面板](/docs/visualization/panels/user-scripts)中编写自定义数据转换脚本时，导入这些类型。

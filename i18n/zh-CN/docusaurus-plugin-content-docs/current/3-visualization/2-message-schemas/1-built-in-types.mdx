@@ -3,52 +3,52 @@ title: Built-in types
 description: Primitive types are the building blocks of Foxglove's supported message schemas.
 ---
 
-Primitive types are the building blocks of Foxglove's supported message schemas.
+原始类型是Foxglove支持的消息模式的构建块。
 
-Each field in a message schema has a type. This type can be another message schema, an enum, or one of the primitive types documented below:
+消息模式中的每个字段都有一个类型。这个类型可以是另一个消息模式、一个枚举或下面记录的原始类型之一：
 
 ### `boolean`
 
-Either `true` or `false`.
+`true` 或 `false`。
 
 ### `bytes`
 
-Raw binary data, represented as a `Uint8Array` in JavaScript.
+原始二进制数据，在JavaScript中表示为 `Uint8Array`。
 
 ### `enum`
 
-Number that serves as a key in a set of named constants.
+作为一组命名常量中的键的数字。
 
 ### `float64`
 
-64-bit floating-point number.
+64位浮点数。
 
 ### `string`
 
-String value encoded as UTF-8.
+以UTF-8编码的字符串值。
 
 ### `time`
 
-| field  | type   | required | description                        |
-| ------ | ------ | -------- | ---------------------------------- |
-| `sec`  | uint32 | ✓        | Seconds since epoch                |
-| `nsec` | uint32 | ✓        | Additional nanoseconds since epoch |
+| 字段    | 类型   | 必需 | 描述                        |
+| ------- | ------ | ---- | --------------------------- |
+| `sec`   | uint32 | ✓    | 自纪元以来的秒数            |
+| `nsec`  | uint32 | ✓    | 自纪元以来的额外纳秒数      |
 
-_NOTE: Foxglove's [Protobuf schemas](/docs/visualization/message-schemas/introduction#protobuf-and-json-schema) represent `time` values with [`google.protobuf.Timestamp`](https://protobuf.dev/reference/protobuf/google.protobuf/#timestamp), which uses `seconds` and `nanos` fields. However, in [user scripts](/docs/visualization/panels/user-scripts), [message converters](/docs/visualization/extensions/introduction#message-converters), and the rest of Foxglove, the values will appear as `sec` and `nsec` fields, for consistency with other data formats._
+_注意: Foxglove的[Protobuf模式](/docs/visualization/message-schemas/introduction#protobuf-and-json-schema)使用[`google.protobuf.Timestamp`](https://protobuf.dev/reference/protobuf/google.protobuf/#timestamp)表示`time`值，它使用`seconds`和`nanos`字段。然而，在[用户脚本](/docs/visualization/panels/user-scripts)、[消息转换器](/docs/visualization/extensions/introduction#message-converters)和Foxglove的其他部分中，这些值将显示为`sec`和`nsec`字段，以便与其他数据格式保持一致。_
 
 ### `duration`
 
-| field  | type   | required | description                                  |
-| ------ | ------ | -------- | -------------------------------------------- |
-| `sec`  | int32  | ✓        | Seconds offset                               |
-| `nsec` | uint32 | ✓        | Nanoseconds offset in the positive direction |
+| 字段    | 类型   | 必需 | 描述                                  |
+| ------- | ------ | ---- | ------------------------------------- |
+| `sec`   | int32  | ✓    | 秒偏移量                              |
+| `nsec`  | uint32 | ✓    | 正方向的纳秒偏移量                    |
 
-_NOTE: Foxglove's [Protobuf schemas](/docs/visualization/message-schemas/introduction#protobuf-and-json-schema) represent `duration` values with [`google.protobuf.Duration`](https://protobuf.dev/reference/protobuf/google.protobuf/#duration), which uses `seconds` and `nanos` fields. However, in [user scripts](/docs/visualization/panels/user-scripts), [message converters](/docs/visualization/extensions/introduction#message-converters), and the rest of Foxglove, the values will appear as `sec` and `nsec` fields, for consistency with other data formats._
+_注意: Foxglove的[Protobuf模式](/docs/visualization/message-schemas/introduction#protobuf-and-json-schema)使用[`google.protobuf.Duration`](https://protobuf.dev/reference/protobuf/google.protobuf/#duration)表示`duration`值，它使用`seconds`和`nanos`字段。然而，在[用户脚本](/docs/visualization/panels/user-scripts)、[消息转换器](/docs/visualization/extensions/introduction#message-converters)和Foxglove的其他部分中，这些值将显示为`sec`和`nsec`字段，以便与其他数据格式保持一致。_
 
 ### `uint32`
 
-Non-negative integer value between 0 and 2<sup>32</sup>&minus;1.
+0到2<sup>32</sup>&minus;1之间的非负整数值。
 
 ### `int32`
 
-Integer value between &minus;2<sup>31</sup> and 2<sup>31</sup>&minus;1.
+&minus;2<sup>31</sup>到2<sup>31</sup>&minus;1之间的整数值。

@@ -1,124 +1,124 @@
 ---
 title: 3D
-description: Display markers, entities, camera images, meshes, URDF models, and more in a 3D scene.
+description: 在3D场景中显示标记、实体、相机图像、网格、URDF模型等。
 ---
 
-Display markers, entities, camera images, meshes, URDF models, and more in a 3D scene.
+在3D场景中显示标记、实体、相机图像、网格、URDF模型等。
 
 ![3d panel](/img/docs/visualization/panels/3d/panel.png)
 
-## Supported messages
+## 支持的消息
 
-The 3D panel can visualize an assortment of different messages.
+3D面板可以可视化各种不同的消息。
 
-To visualize a topic, the messages on that topic must conform to one of the known message schemas listed below.
+要可视化一个主题，该主题上的消息必须符合以下列出的已知消息模式之一。
 
-### Camera field-of-view
+### 相机视场
 
-Calibration parameters for your scene's camera.
+场景相机的校准参数。
 
-| framework | schema                                                                                                               |
-| --------- | -------------------------------------------------------------------------------------------------------------------- |
-| ROS 1     | [`sensor_msgs/CameraInfo`](https://docs.ros.org/en/noetic/api/sensor_msgs/html/msg/CameraInfo.html)                  |
-| ROS 2     | [`sensor_msgs/msg/CameraInfo`](https://github.com/ros2/common_interfaces/blob/master/sensor_msgs/msg/CameraInfo.msg) |
-| Custom    | [`foxglove.CameraCalibration`](/docs/visualization/message-schemas/camera-calibration)                               |
+| 框架   | 模式                                                                                                                 |
+| ------ | -------------------------------------------------------------------------------------------------------------------- |
+| ROS 1  | [`sensor_msgs/CameraInfo`](https://docs.ros.org/en/noetic/api/sensor_msgs/html/msg/CameraInfo.html)                  |
+| ROS 2  | [`sensor_msgs/msg/CameraInfo`](https://github.com/ros2/common_interfaces/blob/master/sensor_msgs/msg/CameraInfo.msg) |
+| 自定义 | [`foxglove.CameraCalibration`](/docs/visualization/message-schemas/camera-calibration)                               |
 
 ### Grid
 
-2D colored grids.
+2D 彩色网格。
 
 ![grid](/img/docs/visualization/panels/3d/occupancygrid.png)
 
-| framework | schema                                                                                                               |
-| --------- | -------------------------------------------------------------------------------------------------------------------- |
-| ROS 1     | [`nav_msgs/OccupancyGrid`](https://docs.ros.org/en/noetic/api/nav_msgs/html/msg/OccupancyGrid.html)                  |
-| ROS 2     | [`nav_msgs/msg/OccupancyGrid`](https://github.com/ros2/common_interfaces/blob/master/nav_msgs/msg/OccupancyGrid.msg) |
-| Custom    | [`foxglove.Grid`](/docs/visualization/message-schemas/grid)                                                          |
+| 框架   | 模式                                                                                                                 |
+| ------ | -------------------------------------------------------------------------------------------------------------------- |
+| ROS 1  | [`nav_msgs/OccupancyGrid`](https://docs.ros.org/en/noetic/api/nav_msgs/html/msg/OccupancyGrid.html)                  |
+| ROS 2  | [`nav_msgs/msg/OccupancyGrid`](https://github.com/ros2/common_interfaces/blob/master/nav_msgs/msg/OccupancyGrid.msg) |
+| 自定义 | [`foxglove.Grid`](/docs/visualization/message-schemas/grid)                                                          |
 
-#### `foxglove.Grid` settings
+#### `foxglove.Grid` 设置
 
-| field                                            | description                                                                                                                                                                                                                                                                                                                         |
-| ------------------------------------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| <b style={{whiteSpace: "nowrap"}}>Color mode</b> | One of: <br/><b>Flat</b>: solid color<br/><b>Color map</b>: pre-defined color palette<br/><b>Gradient</b>: smooth transition between two custom colors<br/><b>RGBA (separate fields)</b>: use embedded color from each cell's `red`, `green`, `blue`, and `alpha` fields (<a href="#rgba-separate-fields-color-mode">see below</a>) |
-| <b style={{whiteSpace: "nowrap"}}>Flat color</b> | Only shown if "Color mode" is set to "Flat"; hex code for color of each cell                                                                                                                                                                                                                                                        |
-| <b style={{whiteSpace: "nowrap"}}>Color by</b>   | Only shown if "Color mode" is not set to "Flat"; numeric field in message used for coloring logic                                                                                                                                                                                                                                   |
-| <b style={{whiteSpace: "nowrap"}}>Color map</b>  | Only shown if "Color mode" is set to "Color map"; "Turbo" (Google) or "Rainbow" (RViz); for mapping "Color by" field values to colors                                                                                                                                                                                               |
-| <b style={{whiteSpace: "nowrap"}}>Opacity</b>    | Only shown if "Color mode" is set to "Color map" or "BGR (packed)"; sets alpha value for all cells                                                                                                                                                                                                                                  |
-| <b style={{whiteSpace: "nowrap"}}>Value min</b>  | Only shown if "Color mode" is not set to "Flat"; minimum value used to normalize incoming grid's "Color by" field values                                                                                                                                                                                                            |
-| <b style={{whiteSpace: "nowrap"}}>Value max</b>  | Only shown if "Color mode" is not set to "Flat"; maximum value used to normalize incoming grid's "Color by" field values                                                                                                                                                                                                            |
-| <b style={{whiteSpace: "nowrap"}}>Frame lock</b> | "On" means the grid is locked to the frame specified by its `frame_id`, and will move as that frame's transforms change. "Off" means the grid is relative to the fixed frame and will not move after it is first displayed.                                                                                                         |
+| 字段                                           | 描述                                                                                                                                                                                                                                                                       |
+| ---------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| <b style={{whiteSpace: "nowrap"}}>颜色模式</b> | 选项之一：<br/><b>平面</b>：纯色<br/><b>色彩图</b>：预定义的色彩图<br/><b>渐变</b>：两个自定义颜色之间的平滑过渡<br/><b>RGBA（独立字段）</b>：使用每个单元格的 `red`、`green`、`blue` 和 `alpha` 字段中的嵌入颜色（<a href="#rgba-separate-fields-color-mode">见下文</a>） |
+| <b style={{whiteSpace: "nowrap"}}>平面颜色</b> | 仅在“颜色模式”设置为“平面”时显示；每个单元格的颜色的十六进制代码                                                                                                                                                                                                           |
+| <b style={{whiteSpace: "nowrap"}}>按颜色</b>   | 仅在“颜色模式”未设置为“平面”时显示；用于着色逻辑的消息中的数值字段                                                                                                                                                                                                         |
+| <b style={{whiteSpace: "nowrap"}}>色彩图</b>   | 仅在“颜色模式”设置为“色彩图”时显示；“Turbo”（Google）或“Rainbow”（RViz）；用于将“按颜色”字段值映射到颜色                                                                                                                                                                   |
+| <b style={{whiteSpace: "nowrap"}}>不透明度</b> | 仅在“颜色模式”设置为“色彩图”或“BGR（打包）”时显示；设置所有单元格的不透明度                                                                                                                                                                                                |
+| <b style={{whiteSpace: "nowrap"}}>最小值</b>   | 仅在“颜色模式”未设置为“平面”时显示；用于规范化传入网格的“按颜色”字段值的最小值                                                                                                                                                                                             |
+| <b style={{whiteSpace: "nowrap"}}>最大值</b>   | 仅在“颜色模式”未设置为“平面”时显示；用于规范化传入网格的“按颜色”字段值的最大值                                                                                                                                                                                             |
+| <b style={{whiteSpace: "nowrap"}}>框架锁定</b> | “开”表示网格锁定到其 `frame_id` 指定的框架，并且会随着该框架的变换而移动。“关”表示网格相对于固定框架，并且在首次显示后不会移动。                                                                                                                                           |
 
-##### RGBA (separate fields) color mode
+##### RGBA（独立字段）颜色模式
 
-Each cell can contain color information in four separate fields, named `red`, `green`, `blue`, and `alpha`, of any numeric type:
+每个单元格可以包含四个独立字段中的颜色信息，分别命名为 `red`、`green`、`blue` 和 `alpha`，可以是任何数值类型：
 
-- **Floating-point values** — 0–1 range
-- **Unsigned integer values** — Maximum possible range (e.g. 0–255 for a `UINT8` field)
-- **Signed integer values** — `-max` to `max` (e.g. &minus;127 to 127 for an `INT8` field; a value of &minus;128 is treated as identical to &minus;127)
+- **浮点值** — 0–1 范围
+- **无符号整数值** — 最大可能范围（例如 `UINT8` 字段的 0–255）
+- **有符号整数值** — `-max` 到 `max`（例如 `INT8` 字段的 &minus;127 到 127；值为 &minus;128 被视为与 &minus;127 相同）
 
-#### `nav_msgs/OccupancyGrid` settings
+#### `nav_msgs/OccupancyGrid` 设置
 
-| field              | description                                                                                                                                                                                                                 |
-| ------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **Color mode**     | One of: <br/><b>Costmap</b>: pre-defined RViz color palette. Cannot customize settings further.<br/><b>Custom</b>: custom color palette using settings below                                                                |
-| **Min color**      | Color corresponding to minimum cell value (0)                                                                                                                                                                               |
-| **Max color**      | Color corresponding to maximum cell value (100). Note that cells with value exactly 100 are displayed as fully transparent.                                                                                                 |
-| **Unknown color**  | Color corresponding to unknown cell value (&minus;1)                                                                                                                                                                        |
-| **Fallback color** | Color corresponding to cell values that fall outside the range from &minus;1 to 100                                                                                                                                         |
-| **Frame lock**     | "On" means the grid is locked to the frame specified by its `frame_id`, and will move as that frame's transforms change. "Off" means the grid is relative to the fixed frame and will not move after it is first displayed. |
+| 字段         | 描述                                                                                                                             |
+| ------------ | -------------------------------------------------------------------------------------------------------------------------------- |
+| **颜色模式** | 选项之一：<br/><b>Costmap</b>：预定义的 RViz 色彩图。无法进一步自定义设置。<br/><b>自定义</b>：使用以下设置自定义色彩图          |
+| **最小颜色** | 对应于最小单元格值（0）的颜色                                                                                                    |
+| **最大颜色** | 对应于最大单元格值（100）的颜色。请注意，值恰好为 100 的单元格显示为完全透明。                                                   |
+| **未知颜色** | 对应于未知单元格值（&minus;1）的颜色                                                                                             |
+| **备用颜色** | 对应于超出 &minus;1 到 100 范围的单元格值的颜色                                                                                  |
+| **框架锁定** | “开”表示网格锁定到其 `frame_id` 指定的框架，并且会随着该框架的变换而移动。“关”表示网格相对于固定框架，并且在首次显示后不会移动。 |
 
-### Image
+### 图像
 
-Images displayed in the 3D scene, using the corresponding [Camera field-of-view](#camera-field-of-view) messages.
+在 3D 场景中显示图像，使用相应的[相机视场](#camera-field-of-view)消息。
 
-| framework | schema                                                                                                                         |
-| --------- | ------------------------------------------------------------------------------------------------------------------------------ |
-| ROS 1     | [`sensor_msgs/Image`](https://docs.ros.org/en/noetic/api/sensor_msgs/html/msg/Image.html)                                      |
-| ROS 2     | [`sensor_msgs/msg/Image`](https://github.com/ros2/common_interfaces/blob/master/sensor_msgs/msg/Image.msg)                     |
-| ROS 1     | [`sensor_msgs/CompressedImage`](https://docs.ros.org/en/api/sensor_msgs/html/msg/CompressedImage.html)                         |
-| ROS 2     | [`sensor_msgs/msg/CompressedImage`](https://github.com/ros2/common_interfaces/blob/master/sensor_msgs/msg/CompressedImage.msg) |
-| Custom    | [`foxglove.RawImage`](/docs/visualization/message-schemas/raw-image)                                                           |
-| Custom    | [`foxglove.CompressedImage`](/docs/visualization/message-schemas/compressed-image)                                             |
+| 框架   | 模式                                                                                                                           |
+| ------ | ------------------------------------------------------------------------------------------------------------------------------ |
+| ROS 1  | [`sensor_msgs/Image`](https://docs.ros.org/en/noetic/api/sensor_msgs/html/msg/Image.html)                                      |
+| ROS 2  | [`sensor_msgs/msg/Image`](https://github.com/ros2/common_interfaces/blob/master/sensor_msgs/msg/Image.msg)                     |
+| ROS 1  | [`sensor_msgs/CompressedImage`](https://docs.ros.org/en/api/sensor_msgs/html/msg/CompressedImage.html)                         |
+| ROS 2  | [`sensor_msgs/msg/CompressedImage`](https://github.com/ros2/common_interfaces/blob/master/sensor_msgs/msg/CompressedImage.msg) |
+| 自定义 | [`foxglove.RawImage`](/docs/visualization/message-schemas/raw-image)                                                           |
+| 自定义 | [`foxglove.CompressedImage`](/docs/visualization/message-schemas/compressed-image)                                             |
 
-### Laser scan
+### 激光扫描
 
-A single scan from a planar laser range-finder.
+来自平面激光测距仪的单次扫描。
 
-| framework | schema                                                                                                             |
-| --------- | ------------------------------------------------------------------------------------------------------------------ |
-| ROS 1     | [`sensor_msgs/LaserScan`](https://docs.ros.org/en/noetic/api/sensor_msgs/html/msg/LaserScan.html)                  |
-| ROS 2     | [`sensor_msgs/msg/LaserScan`](https://github.com/ros2/common_interfaces/blob/master/sensor_msgs/msg/LaserScan.msg) |
-| Custom    | [`foxglove.LaserScan`](/docs/visualization/message-schemas/laser-scan)                                             |
+| 框架   | 模式                                                                                                               |
+| ------ | ------------------------------------------------------------------------------------------------------------------ |
+| ROS 1  | [`sensor_msgs/LaserScan`](https://docs.ros.org/en/noetic/api/sensor_msgs/html/msg/LaserScan.html)                  |
+| ROS 2  | [`sensor_msgs/msg/LaserScan`](https://github.com/ros2/common_interfaces/blob/master/sensor_msgs/msg/LaserScan.msg) |
+| 自定义 | [`foxglove.LaserScan`](/docs/visualization/message-schemas/laser-scan)                                             |
 
-### ROS polygons
+### ROS 多边形
 
-Timestamped polygons made up of a series of connected points.
+由一系列连接点组成的带时间戳的多边形。
 
-| framework | schema                                                                                                                           |
-| --------- | -------------------------------------------------------------------------------------------------------------------------------- |
-| ROS 1     | [`geometry_msgs/PolygonStamped`](https://docs.ros.org/en/noetic/api/geometry_msgs/html/msg/PolygonStamped.html)                  |
-| ROS 2     | [`geometry_msgs/msg/PolygonStamped`](https://github.com/ros2/common_interfaces/blob/master/geometry_msgs/msg/PolygonStamped.msg) |
+| 框架  | 模式                                                                                                                             |
+| ----- | -------------------------------------------------------------------------------------------------------------------------------- |
+| ROS 1 | [`geometry_msgs/PolygonStamped`](https://docs.ros.org/en/noetic/api/geometry_msgs/html/msg/PolygonStamped.html)                  |
+| ROS 2 | [`geometry_msgs/msg/PolygonStamped`](https://github.com/ros2/common_interfaces/blob/master/geometry_msgs/msg/PolygonStamped.msg) |
 
-### ROS markers
+### ROS 标记
 
-Similar to [scene entities](#scene-entity), these `Marker` messages describe primitive shapes or meshes.
+类似于[场景实体](#scene-entity)，这些 `Marker` 消息描述了原始形状或网格。
 
-| framework | schema                                                                                                                               |
-| --------- | ------------------------------------------------------------------------------------------------------------------------------------ |
-| ROS 1     | [`visualization_msgs/Marker`](https://docs.ros.org/en/noetic/api/visualization_msgs/html/msg/Marker.html)                            |
-| ROS 2     | [`visualization_msgs/msg/Marker`](https://github.com/ros2/common_interfaces/blob/master/visualization_msgs/msg/Marker.msg)           |
-| ROS 1     | [`visualization_msgs/MarkerArray`](https://docs.ros.org/en/noetic/api/visualization_msgs/html/msg/MarkerArray.html)                  |
-| ROS 2     | [`visualization_msgs/msg/MarkerArray`](https://github.com/ros2/common_interfaces/blob/master/visualization_msgs/msg/MarkerArray.msg) |
+| 框架  | 模式                                                                                                                                 |
+| ----- | ------------------------------------------------------------------------------------------------------------------------------------ |
+| ROS 1 | [`visualization_msgs/Marker`](https://docs.ros.org/en/noetic/api/visualization_msgs/html/msg/Marker.html)                            |
+| ROS 2 | [`visualization_msgs/msg/Marker`](https://github.com/ros2/common_interfaces/blob/master/visualization_msgs/msg/Marker.msg)           |
+| ROS 1 | [`visualization_msgs/MarkerArray`](https://docs.ros.org/en/noetic/api/visualization_msgs/html/msg/MarkerArray.html)                  |
+| ROS 2 | [`visualization_msgs/msg/MarkerArray`](https://github.com/ros2/common_interfaces/blob/master/visualization_msgs/msg/MarkerArray.msg) |
 
-#### Mesh markers
+#### 网格标记
 
-Markers with a `mesh_resource` field support the following URL schemes:
+具有 `mesh_resource` 字段的标记支持以下 URL 方案：
 
 - `http(s)://`
-- `package://` (Desktop app only)
-- `file://` (Desktop app only)
+- `package://`（仅限桌面应用）
+- `file://`（仅限桌面应用）
 
-And file formats:
+以及文件格式：
 
 - [glTF](#gltf-glb)
 - [STL](#stl-stl)
@@ -127,186 +127,186 @@ And file formats:
 
 **glTF (`.glb`)**
 
-This is the preferred format, as it enjoys the best performance of all supported file types.
+这是首选格式，因为它在所有支持的文件类型中具有最佳性能。
 
-Binary glTF files bundle all required assets into a single file, with support for embedded meshes, compression, and the same physically-based material system used in Foxglove. As a result, your model should appear in Foxglove similarly to how it appears in other 3D programs.
+二进制 glTF 文件将所有必需的资产捆绑到一个文件中，支持嵌入网格、压缩和 Foxglove 使用的相同基于物理的材质系统。因此，您的模型在 Foxglove 中的外观应与在其他 3D 程序中的外观相似。
 
 **STL (`.stl`)**
 
-STL files are well supported in Foxglove, but lack some of glTF's visualization features. The main advantage to STL is the ability to share the same files between your hardware manufacturing process and robot visualization tooling.
+STL 文件在 Foxglove 中得到了很好的支持，但缺乏 glTF 的一些可视化功能。STL 的主要优点是能够在硬件制造过程和机器人可视化工具之间共享相同的文件。
 
-STL was designed for 3D printing and CAD applications, and does not include materials or hierarchies of meshes. While they can be represented in a binary encoding, STL files are commonly represented with ASCII characters, which leads to larger files.
+STL 是为 3D 打印和 CAD 应用设计的，不包括材质或网格层次结构。虽然它们可以用二进制编码表示，但 STL 文件通常用 ASCII 字符表示，这会导致文件更大。
 
 **COLLADA (`.dae`)**
 
-As a predecessor to glTF, COLLADA has a similar feature set. With that said, it does have larger XML-based files, no compression, and additional processing overhead.
+作为 glTF 的前身，COLLADA 具有类似的功能集。话虽如此，它确实有更大的基于 XML 的文件，没有压缩，并且有额外的处理开销。
 
-There is a [bug in RViz](https://github.com/ros-visualization/rviz/issues/1045) where the up-axis metadata is ignored, resulting in incorrect orientations for many `.dae` files in ROS environments. To work around this, the 3D panel has a `Ignore COLLADA <up_axis>` setting to toggle between observing the `<up-axis>` tag or ignoring it like RViz.
+在 RViz 中存在一个[错误](https://github.com/ros-visualization/rviz/issues/1045)，其中忽略了 up-axis 元数据，导致许多 `.dae` 文件在 ROS 环境中的方向不正确。为了解决这个问题，3D 面板有一个 `忽略 COLLADA <up_axis>` 设置，可以在观察 `<up-axis>` 标签或像 RViz 一样忽略它之间切换。
 
 **Wavefront OBJ (`.obj`)**
 
-OBJ is a simple ASCII format predating all other supported formats. It has large file sizes, no material support, no mesh hierarchies, no compression, and additional processing overhead.
+OBJ 是一种简单的 ASCII 格式，早于所有其他支持的格式。它具有较大的文件大小、不支持材质、不支持网格层次结构、没有压缩，并且有额外的处理开销。
 
-Material support was added to the OBJ format as separate `.mtl` files, which Foxglove does not read.
+材质支持作为单独的 `.mtl` 文件添加到 OBJ 格式中，但 Foxglove 不读取这些文件。
 
-### Path
+### 路径
 
-An array of timestamped poses in a named coordinate frame, denoting an object's path through space.
+命名坐标系中一系列带时间戳的姿态，表示物体在空间中的路径。
 
-| framework | schema                                                                                             |
-| --------- | -------------------------------------------------------------------------------------------------- |
-| ROS 1     | [`nav_msgs/Path`](https://docs.ros.org/en/noetic/api/nav_msgs/html/msg/Path.html)                  |
-| ROS 2     | [`nav_msgs/msg/Path`](https://github.com/ros2/common_interfaces/blob/master/nav_msgs/msg/Path.msg) |
-| Custom    | [`foxglove.PosesInFrame`](/docs/visualization/message-schemas/poses-in-frame)                      |
+| 框架   | 模式                                                                                               |
+| ------ | -------------------------------------------------------------------------------------------------- |
+| ROS 1  | [`nav_msgs/Path`](https://docs.ros.org/en/noetic/api/nav_msgs/html/msg/Path.html)                  |
+| ROS 2  | [`nav_msgs/msg/Path`](https://github.com/ros2/common_interfaces/blob/master/nav_msgs/msg/Path.msg) |
+| 自定义 | [`foxglove.PosesInFrame`](/docs/visualization/message-schemas/poses-in-frame)                      |
 
-### Point cloud
+### 点云
 
-A collection of N-dimensional points, which may contain additional fields with information like normals, intensity, etc.
+N 维点的集合，可能包含法线、强度等信息的附加字段。
 
-![pointcloud](/img/docs/visualization/panels/3d/pointcloud.png)
+![点云](/img/docs/visualization/panels/3d/pointcloud.png)
 
-| framework | schema                                                                                                                 |
-| --------- | ---------------------------------------------------------------------------------------------------------------------- |
-| ROS 1     | [`sensor_msgs/PointCloud2`](https://docs.ros.org/en/noetic/api/sensor_msgs/html/msg/PointCloud2.html)                  |
-| ROS 2     | [`sensor_msgs/msg/PointCloud2`](https://github.com/ros2/common_interfaces/blob/master/sensor_msgs/msg/PointCloud2.msg) |
-| Custom    | [`foxglove.PointCloud`](/docs/visualization/message-schemas/point-cloud)                                               |
+| 框架   | 模式                                                                                                                   |
+| ------ | ---------------------------------------------------------------------------------------------------------------------- |
+| ROS 1  | [`sensor_msgs/PointCloud2`](https://docs.ros.org/en/noetic/api/sensor_msgs/html/msg/PointCloud2.html)                  |
+| ROS 2  | [`sensor_msgs/msg/PointCloud2`](https://github.com/ros2/common_interfaces/blob/master/sensor_msgs/msg/PointCloud2.msg) |
+| 自定义 | [`foxglove.PointCloud`](/docs/visualization/message-schemas/point-cloud)                                               |
 
-#### Settings
+#### 设置
 
-| field                                             | description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
-| ------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| <b style={{whiteSpace: "nowrap"}}>Point size</b>  | Size of each rendered point                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
-| <b style={{whiteSpace: "nowrap"}}>Point shape</b> | Shape of each rendered point                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
-| <b style={{whiteSpace: "nowrap"}}>Decay time</b>  | Duration of time (in sec) that each point stays rendered                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
-| <b style={{whiteSpace: "nowrap"}}>Color mode</b>  | One of: <br/><b>Flat</b>: solid color<br/><b>Color map</b>: pre-defined color palette<br/><b>Gradient</b>: smooth transition between two custom colors<br/><b>BGR (packed)</b>: `sensor_msgs/PointCloud2` only; use embedded color from each point's `rgb` field (<a href="#rgba-color-modes">see below</a>)<br/><b>BGRA (packed)</b>: `sensor_msgs/PointCloud2` only; use embedded color from each point's `rgba` field (<a href="#rgba-color-modes">see below</a>)<br/><b>RGBA (separate fields)</b>: `foxglove.PointCloud` only; use embedded color from each point's `red`, `green`, `blue`, and `alpha` fields (<a href="#rgba-color-modes">see below</a>) |
-| <b style={{whiteSpace: "nowrap"}}>Flat color</b>  | Only shown if "Color mode" is set to "Flat"; hex code for color of each point                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
-| <b style={{whiteSpace: "nowrap"}}>Color by</b>    | Only shown if "Color mode" is not set to "Flat"; value used for "Color map" coloring logic; any numeric field in message such as `x`, `y`, `z`, `<distance>` (L2 norm of coordinates), or custom defined field                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
-| <b style={{whiteSpace: "nowrap"}}>Color map</b>   | Only shown if "Color mode" is set to "Color map"; "Turbo" (Google) or "Rainbow" (RViz); for mapping "Color by" field values to colors                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           |
-| <b style={{whiteSpace: "nowrap"}}>Opacity</b>     | Only shown if "Color mode" is set to "Color map" or "BGR (packed)"; sets alpha value for all points                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
-| <b style={{whiteSpace: "nowrap"}}>Value min</b>   | Only shown if "Color mode" is not set to "Flat"; minimum value used to normalize incoming points' "Color by" field values                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
-| <b style={{whiteSpace: "nowrap"}}>Value max</b>   | Only shown if "Color mode" is not set to "Flat"; maximum value used to normalize incoming points' "Color by" field values                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
-| <b style={{whiteSpace: "nowrap"}}>Stixel view</b> | Visualize points as stixels that extend from the point's z location to 0                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
+| 字段                                              | 描述                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
+| ------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| <b style={{whiteSpace: "nowrap"}}>点大小</b>      | 每个渲染点的大小                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
+| <b style={{whiteSpace: "nowrap"}}>点形状</b>      | 每个渲染点的形状                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
+| <b style={{whiteSpace: "nowrap"}}>衰减时间</b>    | 每个点保持渲染的时间（以秒为单位）                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
+| <b style={{whiteSpace: "nowrap"}}>颜色模式</b>    | 选项之一：<br/><b>平面</b>：纯色<br/><b>色彩图</b>：预定义的色彩图<br/><b>渐变</b>：两个自定义颜色之间的平滑过渡<br/><b>BGR（打包）</b>：仅限 `sensor_msgs/PointCloud2`；使用每个点的 `rgb` 字段中的嵌入颜色（<a href="#rgba-color-modes">见下文</a>）<br/><b>BGRA（打包）</b>：仅限 `sensor_msgs/PointCloud2`；使用每个点的 `rgba` 字段中的嵌入颜色（<a href="#rgba-color-modes">见下文</a>）<br/><b>RGBA（独立字段）</b>：仅限 `foxglove.PointCloud`；使用每个点的 `red`、`green`、`blue` 和 `alpha` 字段中的嵌入颜色（<a href="#rgba-color-modes">见下文</a>） |
+| <b style={{whiteSpace: "nowrap"}}>平面颜色</b>    | 仅在“颜色模式”设置为“平面”时显示；每个点的颜色的十六进制代码                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
+| <b style={{whiteSpace: "nowrap"}}>按颜色</b>      | 仅在“颜色模式”未设置为“平面”时显示；用于着色逻辑的消息中的数值字段；例如 `x`、`y`、`z`、`<distance>`（坐标的 L2 范数）或自定义字段                                                                                                                                                                                                                                                                                                                                                                                                                                |
+| <b style={{whiteSpace: "nowrap"}}>色彩图</b>      | 仅在“颜色模式”设置为“色彩图”时显示；“Turbo”（Google）或“Rainbow”（RViz）；用于将“按颜色”字段值映射到颜色                                                                                                                                                                                                                                                                                                                                                                                                                                                          |
+| <b style={{whiteSpace: "nowrap"}}>不透明度</b>    | 仅在“颜色模式”设置为“色彩图”或“BGR（打包）”时显示；设置所有点的不透明度                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           |
+| <b style={{whiteSpace: "nowrap"}}>最小值</b>      | 仅在“颜色模式”未设置为“平面”时显示；用于规范化传入点云的“按颜色”字段值的最小值                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
+| <b style={{whiteSpace: "nowrap"}}>最大值</b>      | 仅在“颜色模式”未设置为“平面”时显示；用于规范化传入点云的“按颜色”字段值的最大值                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
+| <b style={{whiteSpace: "nowrap"}}>Stixel 视图</b> | 将点可视化为从点的 z 位置延伸到 0 的 stixels                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
 
-#### RGBA color modes
+#### RGBA 颜色模式
 
-When using the "BGR (packed)", "BGRA (packed)", and "RGBA (separate fields)" color modes, your point cloud message must contain certain fields to display color information for each point.
+当使用“BGR（打包）”、“BGRA（打包）”和“RGBA（独立字段）”颜色模式时，您的点云消息必须包含某些字段，以显示每个点的颜色信息。
 
-##### RGBA (separate fields)
+##### RGBA（独立字段）
 
-For `foxglove.PointCloud` messages, each point can contain color information in four separate fields, named `red`, `green`, `blue`, and `alpha`, of any numeric type:
+对于 `foxglove.PointCloud` 消息，每个点可以包含四个独立字段中的颜色信息，分别命名为 `red`、`green`、`blue` 和 `alpha`，可以是任何数值类型：
 
-- **Floating-point values** — 0–1 range
-- **Unsigned integer values** — Maximum possible range (e.g. 0–255 for a `UINT8` field)
-- **Signed integer values** — `-max` to `max` (e.g. &minus;127 to 127 for an `INT8` field; a value of &minus;128 is treated as identical to &minus;127)
+- **浮点值** — 0–1 范围
+- **无符号整数值** — 最大可能范围（例如 `UINT8` 字段的 0–255）
+- **有符号整数值** — `-max` 到 `max`（例如 `INT8` 字段的 &minus;127 到 127；值为 &minus;128 被视为与 &minus;127 相同）
 
-##### BGR (packed) and BGRA (packed)
+##### BGR（打包）和 BGRA（打包）
 
-For `sensor_msgs/PointCloud2` messages, each point can contain color information in a single field named `rgb` or `rgba`:
+对于 `sensor_msgs/PointCloud2` 消息，每个点可以在一个名为 `rgb` 或 `rgba` 的字段中包含颜色信息：
 
-- Must use a 4-byte type from [sensor_msgs/PointField](http://docs.ros.org/en/melodic/api/sensor_msgs/html/msg/PointField.html) (`UINT32`, value 6, is recommended)
-- Each red, green, blue, and alpha value is represented by one byte in the 0–255 range
-- Bytes must be packed in `[0xBB, 0xGG, 0xRR, 0xAA]` order (i.e. `(0xAA << 24) | (0xRR << 16) | (0xGG << 8) | 0xBB` in little-endian order). This order is compatible with RViz.
+- 必须使用 [sensor_msgs/PointField](http://docs.ros.org/en/melodic/api/sensor_msgs/html/msg/PointField.html) 中的 4 字节类型（推荐使用 `UINT32`，值为 6）
+- 每个红色、绿色、蓝色和 alpha 值由一个字节表示，范围为 0–255
+- 字节必须按 `[0xBB, 0xGG, 0xRR, 0xAA]` 顺序打包（即在小端序中 `(0xAA << 24) | (0xRR << 16) | (0xGG << 8) | 0xBB`）。此顺序与 RViz 兼容。
 
-If using the "BGR" mode, the alpha value must still be present, but is ignored.
+如果使用“BGR”模式，alpha 值仍然必须存在，但会被忽略。
 
-### Pose
+### 姿态
 
-Poses in a named coordinate frame.
+命名坐标系中的姿态。
 
-| framework | schema                                                                                                                     |
-| --------- | -------------------------------------------------------------------------------------------------------------------------- |
-| ROS 1     | [`geometry_msgs/PoseArray`](https://docs.ros.org/en/noetic/api/geometry_msgs/html/msg/PoseArray.html)                      |
-| ROS 2     | [`geometry_msgs/msg/PoseArray`](https://github.com/ros2/common_interfaces/blob/master/geometry_msgs/msg/PoseArray.msg)     |
-| ROS 1     | [`geometry_msgs/PoseStamped`](https://docs.ros.org/en/noetic/api/geometry_msgs/html/msg/PoseStamped.html)                  |
-| ROS 2     | [`geometry_msgs/msg/PoseStamped`](https://github.com/ros2/common_interfaces/blob/master/geometry_msgs/msg/PoseStamped.msg) |
-| Custom    | [`foxglove.PosesInFrame`](/docs/visualization/message-schemas/poses-in-frame)                                              |
+| 框架   | 模式                                                                                                                       |
+| ------ | -------------------------------------------------------------------------------------------------------------------------- |
+| ROS 1  | [`geometry_msgs/PoseArray`](https://docs.ros.org/en/noetic/api/geometry_msgs/html/msg/PoseArray.html)                      |
+| ROS 2  | [`geometry_msgs/msg/PoseArray`](https://github.com/ros2/common_interfaces/blob/master/geometry_msgs/msg/PoseArray.msg)     |
+| ROS 1  | [`geometry_msgs/PoseStamped`](https://docs.ros.org/en/noetic/api/geometry_msgs/html/msg/PoseStamped.html)                  |
+| ROS 2  | [`geometry_msgs/msg/PoseStamped`](https://github.com/ros2/common_interfaces/blob/master/geometry_msgs/msg/PoseStamped.msg) |
+| 自定义 | [`foxglove.PosesInFrame`](/docs/visualization/message-schemas/poses-in-frame)                                              |
 
-### Scene entity
+### 场景实体
 
-A collection of primitive shapes (cubes, spheres, text, meshes, lines, etc) used to display anything from a basic bounding box to a complex 3D decision tree or road network.
+一组原始形状（立方体、球体、文本、网格、线条等），用于显示从基本边界框到复杂 3D 决策树或道路网络的任何内容。
 
-Scene entities must be wrapped in a `SceneUpdate` message.
+场景实体必须包装在 `SceneUpdate` 消息中。
 
-| framework | schema                                                                     |
-| --------- | -------------------------------------------------------------------------- |
-| Custom    | [`foxglove.SceneEntity`](/docs/visualization/message-schemas/scene-entity) |
-| Custom    | [`foxglove.SceneUpdate`](/docs/visualization/message-schemas/scene-update) |
+| 框架   | 模式                                                                       |
+| ------ | -------------------------------------------------------------------------- |
+| 自定义 | [`foxglove.SceneEntity`](/docs/visualization/message-schemas/scene-entity) |
+| 自定义 | [`foxglove.SceneUpdate`](/docs/visualization/message-schemas/scene-update) |
 
-### Transforms
+### 变换
 
-A transform (translation and rotation) between two reference frames in 3D space.
+3D 空间中两个参考框架之间的变换（平移和旋转）。
 
-| framework | schema                                                                                             |
-| --------- | -------------------------------------------------------------------------------------------------- |
-| ROS 1     | [`tf/tfMessage`](https://docs.ros.org/en/noetic/api/tf/html/msg/tfMessage.html)                    |
-| ROS 1     | [`tf2_msgs/TFMessage`](https://docs.ros.org/en/noetic/api/tf2_msgs/html/msg/TFMessage.html)        |
-| ROS 2     | [`tf2_msgs/msg/TFMessage`](https://github.com/ros2/geometry2/blob/ros2/tf2_msgs/msg/TFMessage.msg) |
-| Custom    | [`foxglove.FrameTransform`](/docs/visualization/message-schemas/frame-transform)                   |
+| 框架   | 模式                                                                                               |
+| ------ | -------------------------------------------------------------------------------------------------- |
+| ROS 1  | [`tf/tfMessage`](https://docs.ros.org/en/noetic/api/tf/html/msg/tfMessage.html)                    |
+| ROS 1  | [`tf2_msgs/TFMessage`](https://docs.ros.org/en/noetic/api/tf2_msgs/html/msg/TFMessage.html)        |
+| ROS 2  | [`tf2_msgs/msg/TFMessage`](https://github.com/ros2/geometry2/blob/ros2/tf2_msgs/msg/TFMessage.msg) |
+| 自定义 | [`foxglove.FrameTransform`](/docs/visualization/message-schemas/frame-transform)                   |
 
-### Velodyne scan
+### Velodyne 扫描
 
-Velodyne Lidar scan packets from the Velodyne ROS driver or the Foxglove desktop app's [Velodyne connection](/docs/connecting-to-data/frameworks/velodyne).
+来自 Velodyne ROS 驱动程序或 Foxglove 桌面应用程序的 Velodyne Lidar 扫描数据包的 [Velodyne 连接](/docs/connecting-to-data/frameworks/velodyne)。
 
-| framework | schema                                                                                                                   |
-| --------- | ------------------------------------------------------------------------------------------------------------------------ |
-| ROS 1     | [`velodyne_msgs/VelodyneScan`](https://docs.ros.org/en/noetic/api/velodyne_msgs/html/msg/VelodyneScan.html)              |
-| ROS 2     | [`velodyne_msgs/msg/VelodyneScan`](https://github.com/ros-drivers/velodyne/blob/ros2/velodyne_msgs/msg/VelodyneScan.msg) |
+| 框架  | 模式                                                                                                                     |
+| ----- | ------------------------------------------------------------------------------------------------------------------------ |
+| ROS 1 | [`velodyne_msgs/VelodyneScan`](https://docs.ros.org/en/noetic/api/velodyne_msgs/html/msg/VelodyneScan.html)              |
+| ROS 2 | [`velodyne_msgs/msg/VelodyneScan`](https://github.com/ros-drivers/velodyne/blob/ros2/velodyne_msgs/msg/VelodyneScan.msg) |
 
-### Video
+### 视频
 
-Compressed videos displayed in the 3D scene, using the corresponding [Camera field-of-view](#camera-field-of-view) messages.
+在 3D 场景中显示压缩视频，使用相应的[相机视场](#camera-field-of-view)消息。
 
-| framework | schema                                                                             |
-| --------- | ---------------------------------------------------------------------------------- |
-| Custom    | [`foxglove.CompressedVideo`](/docs/visualization/message-schemas/compressed-video) |
+| 框架   | 模式                                                                               |
+| ------ | ---------------------------------------------------------------------------------- |
+| 自定义 | [`foxglove.CompressedVideo`](/docs/visualization/message-schemas/compressed-video) |
 
-## Settings
+## 设置
 
-### Frame
+### 框架
 
-Select your 3D scene's display frame and follow mode.
+选择您的 3D 场景的显示框架和跟随模式。
 
-| field             | description                                                                                                                                                                                                                                            |
-| ----------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| **Display frame** | Configures the coordinate frame for rendering the scene.<br/><br/>To render a scene element, you need a [transform](#transforms-1) from its frame to the selected display frame. If its frame is the display frame, no additional transform is needed. |
-| **Follow mode**   | Configures the viewport following behavior. <ul><li>**"Pose"** - Follows the display frame's position and orientation</li><li>**"Position"** - Follows the display frame's position only</li><li>**"Fixed"** - Does not update viewport</li></ul>      |
+| 字段         | 描述                                                                                                                                                   |
+| ------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| **显示框架** | 配置渲染场景的坐标框架。<br/><br/>要渲染场景元素，您需要从其框架到所选显示框架的[变换](#transforms-1)。如果其框架是显示框架，则不需要额外的变换。      |
+| **跟随模式** | 配置视口的跟随行为。 <ul><li>**“姿态”** - 跟随显示框架的位置和方向</li><li>**“位置”** - 仅跟随显示框架的位置</li><li>**“固定”** - 不更新视口</li></ul> |
 
-### Scene
+### 场景
 
-Configure generic rendering properties and viewport properties.
+配置通用渲染属性和视口属性。
 
-| field                          | description                                                                                |
-| ------------------------------ | ------------------------------------------------------------------------------------------ |
-| **Render stats**               | Display rendering performance statistics in panel corner                                   |
-| **Background**                 | Scene's background color                                                                   |
-| **Label scale**                | Scale of rendered labels                                                                   |
-| **Ignore COLLADA `<up_axis>`** | Ignore the `<up_axis>` tag in COLLADA files                                                |
-| **Mesh up axis**               | Direction of “up” when loading meshes (STL, OBJ) without orientation info ("Y-up", "Z-up") |
-| **Sync camera**                | Sync the camera states of multiple 3D panels                                               |
+| 字段                         | 描述                                                             |
+| ---------------------------- | ---------------------------------------------------------------- |
+| **渲染统计**                 | 在面板角落显示渲染性能统计信息                                   |
+| **背景**                     | 场景的背景颜色                                                   |
+| **标签比例**                 | 渲染标签的比例                                                   |
+| **忽略 COLLADA `<up_axis>`** | 忽略 COLLADA 文件中的 `<up_axis>` 标签                           |
+| **网格上轴**                 | 加载没有方向信息的网格（STL、OBJ）时的“上”方向（“Y-up”，“Z-up”） |
+| **同步相机**                 | 同步多个 3D 面板的相机状态                                       |
 
-### View
+### 视图
 
-Configure the camera settings.
+配置相机设置。
 
-| field           | description                                                                                                                                                                                           |
-| --------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **Distance**    | Distance of camera from viewport center (i.e. zoom level)                                                                                                                                             |
-| **Perspective** | Toggles between 3D ("on") and 2D ("off") view of the scene. The 2D view orients the camera towards z-down.                                                                                            |
-| **Target**      | Translational offset from the origin of the display frame                                                                                                                                             |
-| **Theta**       | Azimuthal angle offset from the origin of the display frame in degrees                                                                                                                                |
-| **Phi**         | Polar angle offset from the origin of the display frame in degrees                                                                                                                                    |
-| **Y-Axis FOV**  | Vertical field of view in degrees                                                                                                                                                                     |
-| **Near**        | Near clipping plane distance                                                                                                                                                                          |
-| **Far**         | Far clipping plane distance                                                                                                                                                                           |
-| **Log depth**   | Enable [logarithmic depth buffer](https://www.gamedeveloper.com/programming/logarithmic-depth-buffer) for more uniform depth precision. May result in rendering artifacts or performance degradation. |
+| 字段         | 描述                                                                                                                                         |
+| ------------ | -------------------------------------------------------------------------------------------------------------------------------------------- |
+| **距离**     | 相机到视口中心的距离（即缩放级别）                                                                                                           |
+| **透视**     | 在场景的 3D（“开”）和 2D（“关”）视图之间切换。2D 视图将相机朝向 z 轴向下。                                                                   |
+| **目标**     | 从显示框架原点的平移偏移                                                                                                                     |
+| **Theta**    | 从显示框架原点的方位角偏移（以度为单位）                                                                                                     |
+| **Phi**      | 从显示框架原点的极角偏移（以度为单位）                                                                                                       |
+| **Y 轴视场** | 垂直视场（以度为单位）                                                                                                                       |
+| **近**       | 近剪裁平面距离                                                                                                                               |
+| **远**       | 远剪裁平面距离                                                                                                                               |
+| **对数深度** | 启用[对数深度缓冲](https://www.gamedeveloper.com/programming/logarithmic-depth-buffer)以获得更均匀的深度精度。可能会导致渲染伪影或性能下降。 |
 
-#### Interaction of log depth and near/far plane settings
+#### 对数深度与近/远平面设置的交互
 
-The **Near**, **Far**, and **Log depth** settings are interrelated. When using a very small **Near** value or a large **Far** value, enabling **Log depth** may reduce visual artifacts. For example, in the video below:
+**近**、**远** 和 **对数深度** 设置是相互关联的。当使用非常小的 **近** 值或较大的 **远** 值时，启用 **对数深度** 可能会减少视觉伪影。例如，在下面的视频中：
 
-- The left panel does not use logarithmic depth, and it has a near clipping plane of 1.0. The grids render smoothly, but objects close to the viewer are clipped.
-- The middle panel does not use logarithmic depth, and has a near plane of 0.01. The viewer can get closer to objects without clipping, but rendering artifacts (z-fighting) appear between multiple grids.
-- The right panel enables the new logarithmic depth setting. This avoids z-fighting by providing more depth precision for the grids, while still allowing a near plane value of 0.01 for reduced clipping.
+- 左侧面板未使用对数深度，并且近剪裁平面为 1.0。网格渲染平滑，但靠近观察者的物体被剪裁。
+- 中间面板未使用对数深度，并且近剪裁平面为 0.01。观察者可以更接近物体而不被剪裁，但在多个网格之间出现渲染伪影（z-fighting）。
+- 右侧面板启用了新的对数深度设置。这通过为网格提供更多的深度精度来避免 z-fighting，同时仍允许近剪裁平面值为 0.01 以减少剪裁。
 
 <video
   autoPlay
@@ -318,143 +318,144 @@ The **Near**, **Far**, and **Log depth** settings are interrelated. When using a
   style={{ width: "100%" }}
 />
 
-### Transforms
+### 变换
 
-A robotics system produces many messages describing its observations of the world around it. These messages may exist in one or more coordinate frames, or on different parts of the robot.
+机器人系统会生成许多描述其对周围世界观察的消息。这些消息可能存在于一个或多个坐标系中，或在机器人的不同部分上。
 
-Transforms define the spacial relationships between two coordinate frames at a given time. To render objects into the scene, there must exist a transform path from the object's coordinate frame to the display frame.
+变换定义了在给定时间两个坐标系之间的空间关系。要将对象渲染到场景中，必须存在从对象的坐标系到显示框架的变换路径。
 
-Visualize [transform frames](#transforms) to debug why elements may not be rendering where expected.
+可视化[变换框架](#transforms)以调试元素为何未按预期渲染的位置。
 
-![transforms](/img/docs/visualization/panels/3d/transforms.png)
+![变换](/img/docs/visualization/panels/3d/transforms.png)
 
-#### History
+#### 历史记录
 
-The panel stores coordinate frame relationships over time in a transform history store. Each coordinate frame stores up to 10,000 transform messages before it begins to remove the oldest messages as new messages arrive.
+面板在变换历史记录存储中存储坐标系关系。每个坐标系最多存储 10,000 条变换消息，然后在新消息到达时开始删除最旧的消息。
 
-#### Preloading
+#### 预加载
 
-Transform preloading in the 3D panel ensures an accurate scene by loading transform messages into memory. Transform preloading may impact 3D panel performance during preloading and seeking. You can disable preloading in the 3D panel settings. However, when disabled, the 3D panel may not properly render your scene in certain circumstances where infrequent coordinate frames are involved.
+3D 面板中的变换预加载通过将变换消息加载到内存中来确保场景的准确性。变换预加载可能会在预加载和搜索期间影响 3D 面板性能。您可以在 3D 面板设置中禁用预加载。但是，当禁用时，在涉及不频繁的坐标系的某些情况下，3D 面板可能无法正确渲染您的场景。
 
-#### Troubleshooting
+#### 故障排除
 
-When working with live sources where time synchronicity cannot be achieved, it is recommended to have the server publish its `Time` according to the [Foxglove Websocket Protocol](https://github.com/foxglove/ws-protocol/blob/main/docs/spec.md#time). Otherwise if the server time is ahead of the visualization app, certain messages in the 3D panel will display immediately but coordinate frame state can lag behind as the app uses its wall time instead of the server time.
+在时间同步无法实现的实时源工作时，建议服务器根据 [Foxglove Websocket 协议](https://github.com/foxglove/ws-protocol/blob/main/docs/spec.md#time) 发布其 `Time`。否则，如果服务器时间领先于可视化应用程序，3D 面板中的某些消息将立即显示，但坐标系状态可能会滞后，因为应用程序使用其墙上时间而不是服务器时间。
 
-#### Settings
+#### 设置
 
-| field                 | description                                                                                                                                                                                                                                                                                                          |
-| --------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **Editable**          | Toggles in-app editing of transform frames. When "on", you can update the **Translation** and **Rotation** values to tweak transform frames, see the impact on the scene, and debug how you may want to adjust the frames on your robot. When turned "Off", will revert to original translation and rotation values. |
-| **Labels**            | Toggle the display of transform labels.                                                                                                                                                                                                                                                                              |
-| **Axis scale**        | Scale of transform axis (displayed as an arrow marker)                                                                                                                                                                                                                                                               |
-| **Line width**        | Width of transform (displayed as a line marker)                                                                                                                                                                                                                                                                      |
-| **Line color**        | Color of transform (displayed as a line marker)                                                                                                                                                                                                                                                                      |
-| **Enable preloading** | Preload transform messages from the data source.                                                                                                                                                                                                                                                                     |
+| 字段           | 描述                                                                                                                                                                         |
+| -------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **可编辑**     | 切换应用内变换框架的编辑。当“开启”时，您可以更新**平移**和**旋转**值以调整变换框架，查看其对场景的影响，并调试如何调整机器人上的框架。当关闭时，将恢复到原始的平移和旋转值。 |
+| **标签**       | 切换变换标签的显示。                                                                                                                                                         |
+| **轴比例**     | 变换轴的比例（显示为箭头标记）                                                                                                                                               |
+| **线宽**       | 变换的线宽（显示为线标记）                                                                                                                                                   |
+| **线颜色**     | 变换的颜色（显示为线标记）                                                                                                                                                   |
+| **启用预加载** | 从数据源预加载变换消息。                                                                                                                                                     |
 
-### Topics
+### 主题
 
-Lists topics containing [supported message types](#message-schemas) that can be displayed in the scene. Toggle individual topics.
+列出包含[支持的消息类型](#message-schemas)的主题，这些主题可以显示在场景中。切换各个主题。
 
-Each topic provides settings to configure how the visualization appears in the scene.
+每个主题提供设置以配置可视化在场景中的显示方式。
 
-Any topic with messages matching the [supported schemas](#message-schemas) will show up in the topics list. Each supported format has format specific visualization settings. These settings will show up under the topic.
+任何与[支持的模式](#message-schemas)匹配的消息的主题都将显示在主题列表中。每种支持的格式都有特定的可视化设置。这些设置将显示在主题下。
 
-Use the top-level menu to toggle all topics. You can toggle any individual topic by click the eye icon next to the topic name.
+使用顶级菜单切换所有主题。您可以通过点击主题名称旁边的眼睛图标来切换任何单个主题。
 
-### Custom layers
+### 自定义图层
 
-Custom layers allow you to add visual elements not from your data source.
+自定义图层允许您添加非数据源的可视化元素。
 
-Use the top-level menu to add custom layers.
+使用顶级菜单添加自定义图层。
 
-#### Add Grid
+#### 添加网格
 
-A grid is 2D square with a fixed size and number of divisions. You can create any numbers of grids. Grids can be rendered relative to the display frame or any other transform frame.
+网格是具有固定大小和分割数的二维正方形。您可以创建任意数量的网格。网格可以相对于显示框架或任何其他变换框架进行渲染。
 
 ![grid](/img/docs/visualization/panels/3d/grid.png)
 
-Use the grid layer settings to change the frame, size, color, divisions, and other properties of the grid.
+使用网格图层设置更改框架、大小、颜色、分割数和网格的其他属性。
 
-#### Add URDF
+#### 添加 URDF
 
-[URDF](https://wiki.ros.org/urdf) robot models are loaded automatically if your data source supports parameters (i.e. a native ROS 1 or ROS 2 connection) and the `/robot_description` parameter is set to valid URDF XML.
+如果您的数据源支持参数（即原生 ROS 1 或 ROS 2 连接）并且 `/robot_description` 参数设置为有效的 URDF XML，则会自动加载 [URDF](https://wiki.ros.org/urdf) 机器人模型。
 
-You can add URDF models with a custom layer. Use each layer's menu to duplicate or delete the custom layer.
+您可以使用自定义图层添加 URDF 模型。使用每个图层的菜单复制或删除自定义图层。
 
-| field            | description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
-| ---------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **Source**       | Source of the URDF<ul><li>**URL** – URL to the source URDF file in one of the following schemes:<ul><li>`http(s)://` – Over an HTTP(S) connection</li><li>`package://` – Package path. Only supported when using the desktop app or a live connection that supports asset fetching, such as [`foxglove_bridge`](/docs/2-connecting-to-data/4-ros-foxglove-bridge.md).</li></ul></li><li>**File path** – Absolute file path to the source URDF file. Only supported when using the desktop app.</li><li>**Parameteter** – Parameter containing the source URDF file.</li><li>**Topic** – Topic containing the source URDF file.</li></ul> |
-| **Label**        | (Optional) Label with which the custom layer will appear in the sidebar.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
-| **Frame prefix** | (Optional) Prefix for robot's transforms. Also commonly known as a TF prefix.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            |
-| **Display mode** | Robot link geometries to display <ul><li>**Auto** – Defaults to visual geometries, but falls back to collision geometries if there are no visuals</li><li>**Visual** – Visual geometries</li><li>**Collision** – Collision geometries</li></ul>                                                                                                                                                                                                                                                                                                                                                                                          |
-| **Color**        | Fallback color for the URDF model, if the source doesn't contain colors                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
+| 字段         | 描述                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
+| ------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **来源**     | URDF 的来源<ul><li>**URL** – URL 到以下方案之一的源 URDF 文件:<ul><li>`http(s)://` – 通过 HTTP(S) 连接</li><li>`package://` – 包路径。仅在使用桌面应用程序或支持资产获取的实时连接（如 [`foxglove_bridge`](/docs/2-connecting-to-data/4-ros-foxglove-bridge.md)）时支持。</li></ul></li><li>**文件路径** – 源 URDF 文件的绝对文件路径。仅在使用桌面应用程序时支持。</li><li>**参数** – 包含源 URDF 文件的参数。</li><li>**主题** – 包含源 URDF 文件的主题。</li></ul> |
+| **标签**     | （可选）自定义图层在侧边栏中显示的标签。                                                                                                                                                                                                                                                                                                                                                                                                                              |
+| **框架前缀** | （可选）机器人的变换前缀。也常被称为 TF 前缀。                                                                                                                                                                                                                                                                                                                                                                                                                        |
+| **显示模式** | 要显示的机器人链接几何体<ul><li>**自动** – 默认为视觉几何体，但如果没有视觉几何体则回退到碰撞几何体</li><li>**视觉** – 视觉几何体</li><li>**碰撞** – 碰撞几何体</li></ul>                                                                                                                                                                                                                                                                                             |
+| **颜色**     | URDF 模型的备用颜色，如果源中不包含颜色                                                                                                                                                                                                                                                                                                                                                                                                                               |
 
-##### Resolution of URDF assets with `package://` URLs
+##### 使用 `package://` URL 解析 URDF 资产
 
-Foxglove is able fetch meshes and other assests referenced by `package://` in a number of different ways:
+Foxglove 能够通过多种方式获取 `package://` 引用的网格和其他资产：
 
-1. When using the desktop app, package paths can be resolved by finding packages in directories specified by the [ROS_PACKAGE_PATH](/docs/visualization/introduction#general) setting
-2. When using a live connection that supports asset fetching such as [Foxglove Bridge](/docs/2-connecting-to-data/4-ros-foxglove-bridge.md), assets can be fetched over the websocket connection
-3. When the URDF is given as http(s) or local file path, package paths can be resolved when the URL or file path contains the package name. Consider the following example where the package name `leo_description` is contained in the URDF URL:
-   - URDF URL: `https://raw.githubusercontent.com/LeoRover/leo_common-ros2/humble/leo_description/urdf/leo.urdf.xacro`
-   - Asset URL: `package://leo_description/models/Rocker.dae`
-   - Resolved asset URL: `https://raw.githubusercontent.com/LeoRover/leo_common-ros2/humble/leo_description/urdf/leo.urdf.xacro`
+1. 使用桌面应用程序时，可以通过 [ROS_PACKAGE_PATH](/docs/visualization/introduction#general) 设置中指定的目录找到包来解析包路径
+2. 使用支持资产获取的实时连接（如 [Foxglove Bridge](/docs/2-connecting-to-data/4-ros-foxglove-bridge.md)）时，可以通过 websocket 连接获取资产
+3. 当 URDF 以 http(s) 或本地文件路径提供时，可以在 URL 或文件路径包含包名时解析包路径。考虑以下示例，其中包名 `leo_description` 包含在 URDF URL 中：
 
-### Publish
+- URDF URL: `https://raw.githubusercontent.com/LeoRover/leo_common-ros2/humble/leo_description/urdf/leo.urdf.xacro`
+- 资产 URL: `package://leo_description/models/Rocker.dae`
+- 解析后的资产 URL: `https://raw.githubusercontent.com/LeoRover/leo_common-ros2/humble/leo_description/urdf/leo.urdf.xacro`
 
-Configure click-to-publish behavior for the 3D panel.
+### 发布
 
-| field     | description                                                                                                                                                                                                                                                                                                                 |
-| --------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **Type**  | Type of message to publish. <ul><li>[Point](https://docs.ros.org/en/noetic/api/geometry_msgs/html/msg/Point.html)</li><li>[Pose](https://docs.ros.org/en/noetic/api/geometry_msgs/html/msg/Pose.html)</li><li>[Pose estimates](https://docs.ros.org/en/noetic/api/geometry_msgs/html/msg/PoseWithCovariance.html)</li></ul> |
-| **Topic** | Topic to publish message to – only possible with a [ROS data source with publish support](/docs/connecting-to-data/live-data#limitations).                                                                                                                                                                                  |
+配置 3D 面板的点击发布行为。
 
-## User interactions
+| 字段     | 描述                                                                                                                                                                                                                                                                                                      |
+| -------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **类型** | 要发布的消息类型。 <ul><li>[点](https://docs.ros.org/en/noetic/api/geometry_msgs/html/msg/Point.html)</li><li>[姿态](https://docs.ros.org/en/noetic/api/geometry_msgs/html/msg/Pose.html)</li><li>[姿态估计](https://docs.ros.org/en/noetic/api/geometry_msgs/html/msg/PoseWithCovariance.html)</li></ul> |
+| **主题** | 要发布消息的主题 – 仅在具有发布支持的 [ROS 数据源](/docs/connecting-to-data/live-data#limitations) 时可能。                                                                                                                                                                                               |
 
-Click any object in the scene to display its relevant details in the selected object popup.
+## 用户交互
 
-![3d panel clicked marker](/img/docs/visualization/panels/3d/clicked-marker.jpeg)
+点击场景中的任何对象以在选定对象弹出窗口中显示其相关详细信息。
 
-Click the icons next to the topic to open its settings in the sidebar or to display its messages in a new [Raw Messages panel](/docs/visualization/panels/raw-messages).
+![3d 面板点击标记](/img/docs/visualization/panels/3d/clicked-marker.jpeg)
 
-Selecting an object will set a `$selected_id` variable to the clicked object's `id` value, if it has one. For [ROS markers](#ros-markers) and [scene entities](#scene-entity), you can also set another variable on click.
+点击主题旁边的图标以在侧边栏中打开其设置或在新的[原始消息面板](/docs/visualization/panels/raw-messages)中显示其消息。
 
-The panel controls on the right can be used to do the following:
+选择一个对象将设置一个 `$selected_id` 变量为点击对象的 `id` 值（如果有）。对于[ROS 标记](#ros-markers)和[场景实体](#scene-entity)，您还可以在点击时设置另一个变量。
 
-- **Select** toggle object select mode
-- **3D** Toggle between 3D and 2D views of the scene
-- **Measure** measure the distance between two points
+右侧的面板控件可用于执行以下操作：
 
-## Shortcuts
+- **选择** 切换对象选择模式
+- **3D** 在场景的 3D 和 2D 视图之间切换
+- **测量** 测量两点之间的距离
 
-To move the camera:
+## 快捷键
 
-- `w` – Move camera forward
-- `s` – Move camera backward
-- `a` – Move camera to the left
-- `d` – Move camera to the right
-- Scroll – Zoom in and out
-- Drag – Move camera parallel to the ground
-- Right-click + Drag horizontally – Rotate the camera around the world's z-axis
-- Right-click + Drag vertically – Pan the camera around the world's x- and y- axes
+移动相机：
 
-## Performance troubleshooting
+- `w` – 向前移动相机
+- `s` – 向后移动相机
+- `a` – 向左移动相机
+- `d` – 向右移动相机
+- 滚动 – 放大和缩小
+- 拖动 – 平行于地面移动相机
+- 右键单击 + 水平拖动 – 围绕世界的 z 轴旋转相机
+- 右键单击 + 垂直拖动 – 围绕世界的 x 和 y 轴平移相机
 
-If you are experiencing poor performance while interacting with the 3D panel, it may be because hardware acceleration is not enabled. Hardware acceleration will significantly improve performance by rendering on the GPU rather than the CPU.
+## 性能故障排除
 
-If you're using Google Chrome, you can check that hardware graphics acceleration is enabled by going to `chrome://gpu` and seeing that "WebGL" and/or "WebGL2" are "Hardware accelerated". If not, go to `chrome://settings`, search your settings for `acceleration` and ensure that the "Use graphics acceleration when available" toggle is enabled. If after these steps you still see that WebGL is still not "Hardware accelerated" in `chrome://gpu` then you might have to investigate platform-specific steps for enabling your GPU.
+如果在与 3D 面板交互时遇到性能问题，可能是因为未启用硬件加速。硬件加速将通过在 GPU 而不是 CPU 上渲染显著提高性能。
 
-The desktop app uses Electron (based on Chromium), and should automatically use hardware acceleration when available. If you're seeing issues here, we recommend following the steps above to see if the same issue exists in Chrome. If so, there's a good chance it's affecting our application for the same reasons. Therefore we recommend getting things working in Chrome first, and if the desktop app is still having issues afterward please [let us know](https://foxglove.dev/slack) and we'll look into it.
+如果您使用的是 Google Chrome，可以通过访问 `chrome://gpu` 并查看“WebGL”和/或“WebGL2”是否为“硬件加速”来检查是否启用了硬件图形加速。如果没有，请访问 `chrome://settings`，在设置中搜索 `acceleration` 并确保启用了“可用时使用图形加速”切换。如果在这些步骤之后您仍然看到 WebGL 在 `chrome://gpu` 中不是“硬件加速”，那么您可能需要调查启用 GPU 的特定平台步骤。
 
-Some reasons hardware acceleration might be disabled:
+桌面应用程序使用基于 Chromium 的 Electron，应该在可用时自动使用硬件加速。如果您在这里看到问题，我们建议按照上述步骤查看 Chrome 中是否存在相同问题。如果是这样，很可能是由于相同原因影响了我们的应用程序。因此，我们建议首先在 Chrome 中解决问题，如果桌面应用程序在此之后仍然有问题，请[告诉我们](https://foxglove.dev/slack)，我们会进行调查。
 
-- Your graphics drivers are out of date or not installed such that Chrome can make use of them.
-- Your system configuration could be unsupported for hardware acceleration in Chrome. A way to solve this is to enable "Override software rendering list" in `about://flags`, which can allow Chrome to use hardware acceleration on unsupported systems. This can result in an unstable Chrome experience and is not advised unless necessary.
+硬件加速可能被禁用的一些原因：
 
-If you are experiencing poor performance with the 3D panel while using `foxglove.CompressedVideo` topics, check that video acceleration is enabled. [Docs here](./image.md#checking-video-acceleration).
+- 您的图形驱动程序已过时或未安装，使 Chrome 无法使用它们。
+- 您的系统配置可能不支持 Chrome 中的硬件加速。解决此问题的一种方法是在 `about://flags` 中启用“覆盖软件渲染列表”，这可以允许 Chrome 在不受支持的系统上使用硬件加速。这可能会导致不稳定的 Chrome 体验，除非必要，否则不建议这样做。
 
-## Links and resources
+如果在使用 `foxglove.CompressedVideo` 主题时遇到 3D 面板性能不佳的问题，请检查是否启用了视频加速。[文档在这里](./image.md#checking-video-acceleration)。
 
-- [Visualize point clouds with custom colors](https://foxglove.dev/blog/visualizing-point-clouds-with-custom-colors)
-- [Visualize ROS mesh markers](https://foxglove.dev/blog/how-to-visualize-ros-mesh-markers)
-- [Write a message converter extension (3D panel)](https://foxglove.dev/blog/using-message-converters-to-display-3d-markers-in-foxglove-studio)
+## 链接和资源
+
+- [使用自定义颜色可视化点云](https://foxglove.dev/blog/visualizing-point-clouds-with-custom-colors)
+- [可视化 ROS 网格标记](https://foxglove.dev/blog/how-to-visualize-ros-mesh-markers)
+- [编写消息转换器扩展（3D 面板）](https://foxglove.dev/blog/using-message-converters-to-display-3d-markers-in-foxglove-studio)
