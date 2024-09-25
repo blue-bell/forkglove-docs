@@ -14,7 +14,7 @@ import "redocusaurus";
 dotenvConfig();
 
 export default {
-  title: "Forklove | Docs",
+  title: "Forklove",
   favicon: "img/favicon.ico",
 
   // Set the production url of your site here
@@ -44,11 +44,11 @@ export default {
       {
         docs: {
           sidebarPath: require.resolve("./navigation.js"),
-          editUrl: "https://github.com/foxglove/docs/tree/main",
+          editUrl: "https://github.com/forkglove/docs/tree/main",
         },
-        theme: {
-          customCss: require.resolve("./src/css/custom.css"),
-        },
+        // theme: {
+        //   customCss: require.resolve("./src/css/custom.css"),
+        // },
         blog: {
           path: "changelog",
           routeBasePath: "changelog",
@@ -59,21 +59,21 @@ export default {
         },
       } satisfies PresetClassic.Options,
     ],
-    [
-      "redocusaurus",
-      {
-        config: "./api-docs/redocly.yaml",
-        specs: [
-          {
-            spec: "./api-docs/specs/v1.yaml",
-            route: "/api/",
-          },
-        ],
-        theme: {
-          primaryColor: "#9480ed",
-        },
-      } satisfies RedocusaurusPresetOptions,
-    ],
+    // [
+    //   "redocusaurus",
+    //   {
+    //     config: "./api-docs/redocly.yaml",
+    //     specs: [
+    //       {
+    //         spec: "./api-docs/specs/v1.yaml",
+    //         route: "/api/",
+    //       },
+    //     ],
+    //     theme: {
+    //       primaryColor: "#9480ed",
+    //     },
+    //   } satisfies RedocusaurusPresetOptions,
+    // ],
   ],
 
   plugins: [
@@ -97,7 +97,7 @@ export default {
     navbar: {
       title: undefined,
       logo: {
-        alt: "Foxglove",
+        alt: "Forkglove",
         src: "img/foxglove-typemark-dark.svg",
         href: "/",
         target: "_self",
@@ -109,19 +109,23 @@ export default {
           position: "left",
           label: "Documentation",
         },
+        // {
+        //   to: "/api",
+        //   label: "API Reference",
+        //   position: "left",
+        // },
+        // {
+        //   to: "/changelog",
+        //   label: "Changelog",
+        //   position: "left",
+        // },
         {
-          to: "/api",
-          label: "API Reference",
-          position: "left",
+          type: "localeDropdown",
+          position: "right",
         },
         {
-          to: "/changelog",
-          label: "Changelog",
-          position: "left",
-        },
-        {
-          href: "https://foxglove.dev/",
-          label: "Back to Foxglove",
+          href: "https://github.com/forkglove/docs",
+          label: "GitHub",
           position: "right",
         },
       ],
@@ -132,36 +136,36 @@ export default {
           title: "Foxglove",
           items: [
             { label: "Docs", to: "/" },
-            { label: "API reference", to: "/api" },
+            // { label: "API reference", to: "/api" },
             { label: "Changelog", to: "/changelog" },
           ],
         },
-        {
-          title: "Community",
-          items: [
-            { label: "Slack", href: "https://foxglove.dev/slack" },
-            { label: "Twitter", href: "https://twitter.com/foxglovedev" },
-            { label: "GitHub", href: "https://github.com/foxglove" },
-          ],
-        },
+        // {
+        //   title: "Community",
+        //   items: [
+        //     { label: "Slack", href: "https://foxglove.dev/slack" },
+        //     { label: "Twitter", href: "https://twitter.com/foxglovedev" },
+        //     { label: "GitHub", href: "https://github.com/foxglove" },
+        //   ],
+        // },
       ],
-      copyright: `Copyright © Foxglove`,
+      copyright: `Copyright © Forkglove`,
     },
     prism: {
       theme: themes.github,
       darkTheme: themes.dracula,
       additionalLanguages: ["json"],
     },
-    algolia:
-      process.env.ALGOLIA_APP_ID && process.env.ALGOLIA_API_KEY
-        ? {
-            appId: process.env.ALGOLIA_APP_ID,
-            apiKey: process.env.ALGOLIA_API_KEY,
-            indexName: "foxglove-pages",
-            contextualSearch: true,
-            searchParameters: {}, // optional
-            searchPagePath: "search", // optional; false to disable
-          }
-        : undefined,
+    // algolia:
+    //   process.env.ALGOLIA_APP_ID && process.env.ALGOLIA_API_KEY
+    //     ? {
+    //         appId: process.env.ALGOLIA_APP_ID,
+    //         apiKey: process.env.ALGOLIA_API_KEY,
+    //         indexName: "foxglove-pages",
+    //         contextualSearch: true,
+    //         searchParameters: {}, // optional
+    //         searchPagePath: "search", // optional; false to disable
+    //       }
+    //     : undefined,
   } satisfies PresetClassic.ThemeConfig,
 } satisfies Config;
