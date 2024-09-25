@@ -1,0 +1,14 @@
+---
+title: Upgrade version
+description: Upgrade the version of your Foxglove edge site.
+---
+
+Upgrade the version of your Foxglove edge site.
+
+Use Helm to perform in-place upgrades of the edge site software – these commands will use values configured during installation:
+
+```shell
+$ helm repo update
+$ helm upgrade foxglove-edge-site foxglove/edge-site \
+    --namespace foxglove
+```

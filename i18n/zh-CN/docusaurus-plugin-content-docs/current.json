@@ -1,0 +1,66 @@
+{
+  "version.label": {
+    "message": "Next",
+    "description": "The label for version current"
+  },
+  "sidebar.docsSidebar.category.Organization setup": {
+    "message": "Organization setup",
+    "description": "The label for category Organization setup in sidebar docsSidebar"
+  },
+  "sidebar.docsSidebar.category.Connecting to data": {
+    "message": "Connecting to data",
+    "description": "The label for category Connecting to data in sidebar docsSidebar"
+  },
+  "sidebar.docsSidebar.category.Frameworks": {
+    "message": "Frameworks",
+    "description": "The label for category Frameworks in sidebar docsSidebar"
+  },
+  "sidebar.docsSidebar.category.Visualization": {
+    "message": "Visualization",
+    "description": "The label for category Visualization in sidebar docsSidebar"
+  },
+  "sidebar.docsSidebar.category.Message schemas": {
+    "message": "Message schemas",
+    "description": "The label for category Message schemas in sidebar docsSidebar"
+  },
+  "sidebar.docsSidebar.category.Panels": {
+    "message": "Panels",
+    "description": "The label for category Panels in sidebar docsSidebar"
+  },
+  "sidebar.docsSidebar.category.Extensions": {
+    "message": "Extensions",
+    "description": "The label for category Extensions in sidebar docsSidebar"
+  },
+  "sidebar.docsSidebar.category.API": {
+    "message": "API",
+    "description": "The label for category API in sidebar docsSidebar"
+  },
+  "sidebar.docsSidebar.category.Guides": {
+    "message": "Guides",
+    "description": "The label for category Guides in sidebar docsSidebar"
+  },
+  "sidebar.docsSidebar.category.Integrations": {
+    "message": "Integrations",
+    "description": "The label for category Integrations in sidebar docsSidebar"
+  },
+  "sidebar.docsSidebar.category.Primary Sites": {
+    "message": "Primary Sites",
+    "description": "The label for category Primary Sites in sidebar docsSidebar"
+  },
+  "sidebar.docsSidebar.category.Self-hosting": {
+    "message": "Self-hosting",
+    "description": "The label for category Self-hosting in sidebar docsSidebar"
+  },
+  "sidebar.docsSidebar.category.Edge Sites": {
+    "message": "Edge Sites",
+    "description": "The label for category Edge Sites in sidebar docsSidebar"
+  },
+  "sidebar.docsSidebar.category.Foxglove Agent": {
+    "message": "Foxglove Agent",
+    "description": "The label for category Foxglove Agent in sidebar docsSidebar"
+  },
+  "sidebar.docsSidebar.category.Webhooks": {
+    "message": "Webhooks",
+    "description": "The label for category Webhooks in sidebar docsSidebar"
+  }
+}

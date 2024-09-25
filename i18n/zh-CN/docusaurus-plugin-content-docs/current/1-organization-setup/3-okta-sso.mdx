@@ -1,0 +1,62 @@
+---
+title: Okta SSO
+---
+
+import AccountRequiredHeader from "../../src/components/docs/icons/AccountRequiredHeader";
+
+<AccountRequiredHeader plans={["Enterprise"]} />
+
+Foxglove 组织可以使用 Okta 作为授权提供者。
+
+### 创建 Okta 应用程序
+
+在您的 Okta 仪表板上创建一个新的应用集成：
+
+- **登录方法** – OIDC - OpenID Connect
+- **应用类型** – 单页应用程序
+- **授权类型** – 授权码
+- **登录重定向 URI** – 格式为 `https://app.foxglove.dev/{YOUR-FOXGLOVE-SLUG}/signin`（在 [设置页面](https://app.foxglove.dev/~/settings) 找到 `YOUR-FOXGLOVE-SLUG`）
+- **登出重定向 URI** – `https://app.foxglove.dev/signin`
+- **受信任的来源** – 添加 `https://app.foxglove.dev`
+- **访问** – 请注意，“Federation Broker Mode” 与 Okta tiles [不兼容](https://help.okta.com/en-us/Content/Topics/Apps/apps-fbm-known-issues.htm)
+
+### 启用 Okta 应用程序图标
+
+可选地，您可以使用以下设置启用 Okta 应用程序图标登录：
+
+- **登录发起者** – Okta 或应用程序
+- **登录流程** – 重定向到应用程序以启动登录（OIDC 兼容）
+- **登录 URI** – 与上一步中的登录重定向 URL 相同 (`https://app.foxglove.dev/{YOUR-FOXGLOVE-SLUG}/signin`)
+- **应用程序可见性** – 向用户显示应用程序图标
+
+这个 [Foxglove 标志](/img/docs/organization-setup/okta/foxglove-logo-okta.png) 作为自定义图标效果很好。
+
+### Foxglove OIDC 配置
+
+在 [Okta SSO 设置页面](https://app.foxglove.dev/~/settings/oidc) 配置应用程序设置：
+
+![Foxglove SSO 设置](/img/docs/organization-setup/okta/settings.png)
+
+- **Okta 域** – 在 Okta 仪表板的个人资料下拉菜单中找到 (`xxxxx.okta.com`)
+
+  <img alt="Okta 域" src="/img/docs/organization-setup/okta/domain.png" width="400" />
+
+- **客户端 ID** – 在应用程序列表中找到，位于应用程序名称下方
+
+  <img alt="Okta 客户端 ID" src="/img/docs/organization-setup/okta/clientid.png" width="600" />
+
+### （可选）禁用非 Okta 登录
+
+通过退出并使用 Okta SSO 重新登录来确认您的 Okta SSO 设置是否有效。
+
+使用 [SSO 设置标签](https://app.foxglove.dev/~/settings/oidc) 禁用或重新启用所有其他身份验证方法。
+
+### 管理成员
+
+- **配置成员** – 任何具有 Foxglove Okta 应用程序访问权限的 Okta 用户都可以登录。首次登录时会自动创建一个新的 Foxglove 账户。
+
+- **移除用户** – 在 Okta 中撤销用户的访问权限，然后在 Foxglove 的 [团队设置页面](https://app.foxglove.dev/~/settings/team) 移除相关用户以立即将其从 Foxglove 中注销。如果您的账户启用了非 Okta 登录方法，匹配您批准域的电子邮件始终可以注册。
+
+## 链接和资源
+
+- [创建 OIDC 应用集成](https://help.okta.com/en-us/Content/Topics/Apps/Apps_App_Integration_Wizard_OIDC.htm)

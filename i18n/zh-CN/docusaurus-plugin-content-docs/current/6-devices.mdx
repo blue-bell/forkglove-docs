@@ -1,0 +1,47 @@
+---
+title: 设备
+description: 设备代表您的组织想要跟踪的每个真实和模拟机器人。
+---
+
+import AccountRequiredHeader from "../src/components/docs/icons/AccountRequiredHeader";
+
+设备代表您的组织想要跟踪的每个真实和模拟机器人。
+
+在将数据导入 Foxglove 时，您可以将每个数据记录与记录它的设备关联起来。
+
+在免费计划中，您的组织最多可以创建十个设备。
+
+### 操作
+
+从[设备页面](https://app.foxglove.dev/~/devices)添加、列出、删除和搜索设备。
+
+|            | 定义                                                                         | CLI 命令                                      |
+| ---------- | ---------------------------------------------------------------------------- | -------------------------------------------- |
+| **添加**   | 为您的组织想要跟踪的每个机器人添加一个唯一命名的设备                         | `foxglove devices add --name "my device"`    |
+| **列出**   | 查看您组织的设备                                                             | `foxglove devices list`                      |
+| **删除**   | 删除您组织中的设备                                                           | `foxglove devices delete --name "my device"` |
+
+### 自定义属性
+
+<AccountRequiredHeader plans={["Team", "Enterprise"]} />
+
+自定义属性是可以与设备关联的预定义元数据字段。它们由组织的管理员设置。
+
+#### 添加
+
+管理员可以进入[自定义属性设置](https://app.foxglove.dev/~/settings/custom-properties)为其组织的设备创建自定义属性。
+
+每个自定义属性必须包括：
+
+- **键** – 唯一标识符（例如 `version`）
+- **值类型** – 自定义属性值的强制类型（例如“单行文本”）
+
+例如，管理员可以创建一个名为 `version` 的自定义设备属性，该属性接受数值。现在，任何组织成员都可以为团队的机器人添加 `version` 号，以跟踪它们的硬件版本。
+
+#### 设置和编辑值
+
+一旦管理员创建了自定义设备属性，任何组织成员现在都可以进入任何设备页面设置和编辑自定义属性值（例如，将设备 A 的 `version` 设置为 65）。
+
+#### 过滤
+
+在为各种资源分配自定义属性值后，前往[设备](https://app.foxglove.dev/~/devices)按这些值查询（例如，`version` 设置为 65 的设备）。

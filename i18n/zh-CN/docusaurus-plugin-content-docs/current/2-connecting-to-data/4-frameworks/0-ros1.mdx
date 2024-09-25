@@ -1,0 +1,85 @@
+---
+title: ROS 1
+description: 加载本地和远程 ROS 1 (`.bag`) 文件，或直接连接到实时 ROS 1 堆栈。
+---
+
+import CorsDirections from "../../../src/components/docs/connecting-to-data/CorsDirections";
+import DesktopAppOnlyBadge from "../../../src/components/docs/DesktopAppOnlyBadge";
+import FoxgloveWebSocketResetDirections from "../../../src/components/docs/connecting-to-data/FoxgloveWebSocketResetDirections";
+import ImportedDataDirections from "../../../src/components/docs/connecting-to-data/ImportedDataDirections";
+import LocalDataDirections from "../../../src/components/docs/connecting-to-data/LocalDataDirections";
+import RosbridgeDirections from "../../../src/components/docs/connecting-to-data/RosbridgeDirections";
+
+加载本地和远程 [ROS 1](https://foxglove.dev/blog/installing-ros1-noetic-on-ubuntu) (`.bag`) 文件，或直接连接到实时 ROS 1 堆栈。
+
+## 实时数据
+
+[安装 ROS 1](https://foxglove.dev/blog/installing-ros1-noetic-on-ubuntu)，并确保您与机器人在同一网络上。
+
+在 Foxglove 中，在“打开数据源”对话框中选择“打开连接”。
+
+### Foxglove WebSocket
+
+我们推荐 [Foxglove WebSocket](#foxglove-websocket) 作为最简单的连接方式——特别是如果您的 ROS 和 Foxglove 之间有网络防火墙，因为它只需要您的 ROS 主机打开一个端口。
+
+此选项需要运行一个额外的 ROS 节点 ([`foxglove_bridge`](https://index.ros.org/p/foxglove_bridge/))——请按照[此处的安装说明](/docs/connecting-to-data/ros-foxglove-bridge)进行操作。
+
+#### 连接
+
+[设置 Foxglove 桥](/docs/connecting-to-data/ros-foxglove-bridge)。
+
+在“打开数据源”对话框中选择“Foxglove WebSocket”，然后输入您的 Foxglove 桥服务器的 URL：
+
+![Foxglove WebSocket 对话框](/img/docs/connecting-to-data/foxglove-websocket.png)
+
+<FoxgloveWebSocketResetDirections />
+
+#### 限制
+
+Foxglove WebSocket 连接支持发布回您的 ROS 堆栈，以及读取和设置 ROS 参数。
+
+### Rosbridge
+
+_注意：出于性能原因，我们推荐使用 [Foxglove WebSocket](#foxglove-websocket) 连接。_
+
+<RosbridgeDirections rosVersion={1} />
+
+#### 限制
+
+Rosbridge 连接支持发布回您的 ROS 堆栈，但不支持读取或设置 [ROS 参数](https://github.com/orgs/foxglove/discussions/223)。
+
+### 原生
+
+<DesktopAppOnlyBadge />
+
+_注意：Mac 的 Docker 不会将所有容器端口暴露给 macOS 主机，因此不支持 [桥接](https://docs.docker.com/docker-for-mac/networking/#there-is-no-docker0-bridge-on-macos) 或 [主机网络](https://docs.docker.com/network/host/)。在 Mac 上运行 ROS 时，请使用 [Foxglove WebSocket](#foxglove-websocket) 或 [Rosbridge](#rosbridge) 连接。_
+
+通过原生 TCP（传输控制协议）连接直接连接到正在运行的 ROS 堆栈，以直接访问您的 ROS 主节点和/或节点。
+
+一旦您在计算机上有一个工作正常的 [ROS 1](https://foxglove.dev/blog/installing-ros1-noetic-on-ubuntu) 设置，在终端中运行 `roscore` 以启动您的 ROS 主节点。
+
+在“打开数据源”对话框中选择“ROS 1”，然后输入您的 [`ROS_MASTER_URI`](https://wiki.ros.org/ROS/EnvironmentVariables#ROS_MASTER_URI)（ROS 主节点的 IP 和端口）和 [`ROS_HOSTNAME`](https://wiki.ros.org/ROS/EnvironmentVariables#ROS_IP.2FROS_HOSTNAME)：
+
+![ROS 1 对话框](/img/docs/connecting-to-data/ros1.png)
+
+如果您遇到任何问题，请确保您的 ROS 堆栈和 Foxglove 之间有不受限制的网络连接，因为 ROS 使用多个端口进行通信。
+
+如果您在不同的机器上运行 ROS 和 Foxglove，请参阅 ROS 1 [网络设置](http://wiki.ros.org/ROS/NetworkSetup) 文档，以确保您的环境配置正确。
+
+### 远程文件
+
+在“打开数据源”对话框中选择“远程文件”，然后输入远程 `.bag` 文件的 URL。
+
+<CorsDirections />
+
+## 本地数据
+
+<LocalDataDirections />
+
+## 导入数据
+
+<ImportedDataDirections />
+
+## 链接和资源
+
+- [打开 Foxglove 桥连接](https://foxglove.dev/blog/announcing-the-new-foxglove-bridge-for-live-ros-data)

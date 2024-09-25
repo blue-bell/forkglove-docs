@@ -1,0 +1,64 @@
+---
+title: ROS 2
+description: 加载包含 ROS 2 数据的本地和远程 MCAP 文件，或直接连接到实时 ROS 2 堆栈。
+---
+
+import CorsDirections from "../../../src/components/docs/connecting-to-data/CorsDirections";
+import FoxgloveWebSocketResetDirections from "../../../src/components/docs/connecting-to-data/FoxgloveWebSocketResetDirections";
+import ImportedDataDirections from "../../../src/components/docs/connecting-to-data/ImportedDataDirections";
+import LocalDataDirections from "../../../src/components/docs/connecting-to-data/LocalDataDirections";
+import RosbridgeDirections from "../../../src/components/docs/connecting-to-data/RosbridgeDirections";
+
+加载包含 [ROS 2](https://foxglove.dev/blog/installing-ros2-humble-on-ubuntu) 数据的本地和远程 [MCAP](https://mcap.dev) 文件，或直接连接到实时 ROS 2 堆栈。
+
+## 实时数据
+
+[安装 ROS 2](https://foxglove.dev/blog/installing-ros2-humble-on-ubuntu)，并确保您与机器人在同一网络上。
+
+在 Foxglove 中，在“打开数据源”对话框中选择“打开连接”。
+
+### Foxglove WebSocket
+
+我们推荐 [Foxglove WebSocket](#foxglove-websocket) 作为最简单的连接方式——特别是如果您在 ROS 和 Foxglove 之间有网络防火墙，因为它只需要您的 ROS 主机打开一个端口。
+
+此选项需要运行一个额外的 ROS 节点 ([`foxglove_bridge`](https://index.ros.org/p/foxglove_bridge/))——请按照[此处的安装说明](/docs/connecting-to-data/ros-foxglove-bridge)进行操作。
+
+#### 连接
+
+[设置 Foxglove 桥接](#foxglove-websocket)。
+
+在“打开数据源”对话框中选择“Foxglove WebSocket”，然后输入您的 Foxglove 桥接服务器的 URL：
+
+![Foxglove WebSocket 对话框](/img/docs/connecting-to-data/foxglove-websocket.png)
+
+<FoxgloveWebSocketResetDirections />
+
+#### 限制
+
+Foxglove WebSocket 连接支持发布回您的 ROS 堆栈，以及读取和设置 ROS 参数。
+
+### Rosbridge
+
+_注意：出于性能原因，我们推荐使用 [Foxglove WebSocket](#foxglove-websocket) 连接。_
+
+<RosbridgeDirections rosVersion={2} />
+
+#### 限制
+
+Rosbridge 连接支持发布回您的 ROS 堆栈，但不支持读取或设置 [ROS 参数](https://github.com/orgs/foxglove/discussions/223)。
+
+### 远程文件
+
+远程 ROS 2 `.db3` 文件不受支持，但您可以将它们转换为 MCAP 文件以支持远程文件。
+
+在“打开数据源”对话框中选择“远程文件”，然后输入您的远程 `.mcap` 文件的 URL。
+
+![远程文件对话框](/img/docs/connecting-to-data/remote-file.png)
+
+<CorsDirections />
+
+## 本地数据
+
+您必须先将 ROS 2 (`.db3`) 文件转换为支持的 MCAP 文件格式，然后才能在 Foxglove 中加载。
+
+使用 [`mcap` CLI 工具](https://github.com/foxglove/mcap/tree/main/go/cli/mcap) 进行转换：

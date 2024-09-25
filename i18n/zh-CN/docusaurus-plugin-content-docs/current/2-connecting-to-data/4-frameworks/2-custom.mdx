@@ -1,0 +1,28 @@
+---
+title: 自定义
+description: 加载包含自定义数据（例如 Protobuf、JSON、FlatBuffers）的本地和远程 MCAP 文件，或通过 Foxglove WebSocket 连接直接连接到实时自定义数据。
+---
+
+import CorsDirections from "../../../src/components/docs/connecting-to-data/CorsDirections";
+import FoxgloveWebSocketResetDirections from "../../../src/components/docs/connecting-to-data/FoxgloveWebSocketResetDirections";
+import ImportedDataDirections from "../../../src/components/docs/connecting-to-data/ImportedDataDirections";
+import LocalDataDirections from "../../../src/components/docs/connecting-to-data/LocalDataDirections";
+
+加载包含自定义数据（例如 [Protobuf](https://developers.google.com/protocol-buffers)、[JSON](http://jsonschema.org/)、[FlatBuffers](https://google.github.io/flatbuffers)）的本地或远程 [MCAP](https://mcap.dev) 文件，或通过 Foxglove WebSocket 连接直接连接到实时自定义数据。
+
+## 实时数据
+
+通过与编码无关的 WebSocket 连接直接连接到您的实时自定义数据（例如 Protobuf、JSON、FlatBuffers）。
+
+在 Foxglove 中，在“打开数据源”对话框中选择“打开连接”。
+
+### Foxglove WebSocket
+
+创建您自己的服务器以开始发布您的自定义数据。
+
+[`foxglove/ws-protocol` 仓库](https://github.com/foxglove/ws-protocol) 提供：
+
+- 用于构建自定义服务器和客户端的包（[C++](https://github.com/foxglove/ws-protocol/tree/main/cpp)、[Python](https://github.com/foxglove/ws-protocol/tree/main/python)、[JavaScript/TypeScript](https://github.com/foxglove/ws-protocol/tree/main/typescript/ws-protocol)）
+- 自定义服务器（[C++](https://github.com/foxglove/ws-protocol/tree/main/cpp/examples)、[Python](https://github.com/foxglove/ws-protocol/tree/main/python#example-servers)、[JavaScript/TypeScript](https://github.com/foxglove/ws-protocol/tree/main/typescript/ws-protocol#server-template)）和客户端（[JavaScript/TypeScript](https://github.com/foxglove/ws-protocol/tree/main/typescript/ws-protocol#client-template)）的模板
+
+[`@foxglove/ws-protocol-examples`](https://github.com/foxglove/ws-protocol/tree/main/typescript/ws-protocol-examples) npm 包还提供示例服务器和客户端，您可以运行这些示例以查看 Foxglove 如何从自定义 WebSocket 服务器接收系统统计信息和图像数据：

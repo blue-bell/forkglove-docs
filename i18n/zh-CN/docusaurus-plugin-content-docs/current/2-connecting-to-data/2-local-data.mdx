@@ -1,0 +1,28 @@
+---
+title: 本地数据
+description: Foxglove 可以加载本地 ROS 1 (.bag) 和 MCAP (.mcap) 文件进行可视化。
+---
+
+import LocalDataDirections from "../../src/components/docs/connecting-to-data/LocalDataDirections";
+
+Foxglove 可以加载本地数据文件进行可视化。
+
+### 支持的格式
+
+|                                                                    | 文件扩展名 |
+| ------------------------------------------------------------------ | ---------- |
+| **[ROS 1](/docs/connecting-to-data/frameworks/ros1#local-data)**   | `.bag`     |
+| **[ROS 2](/docs/connecting-to-data/frameworks/ros2#local-data)**   | `.db3`     |
+| **[MCAP](/docs/connecting-to-data/frameworks/mcap#local-data)**    | `.mcap`    |
+| **[PX4 ULog](/docs/connecting-to-data/frameworks/px4#local-data)** | `.ulg`     |
+
+由于 ROS 2 `.db3` 文件不包含其消息定义，我们建议先将其转换为自包含的 MCAP 文件，然后再加载到 Foxglove 中。
+
+### 入门指南
+
+<LocalDataDirections />
+
+## 链接和资源
+
+- [MCAP](https://mcap.dev)
+- [介绍 MCAP 文件格式](https://foxglove.dev/blog/introducing-the-mcap-file-format)

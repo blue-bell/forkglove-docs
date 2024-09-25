@@ -1,0 +1,28 @@
+---
+title: Manage data
+description: Start processing data through your Foxglove edge site.
+---
+
+Start processing data through your Foxglove edge site.
+
+### Import to edge
+
+To add recordings to your edge site:
+
+1. Upload the recording to the storage volume for the site.
+2. Make an HTTP POST request to the edge controller `/v1/recordings` endpoint. The request body must include a `path` (string path to the recording within the storage volume) and `deviceName` (for the recording). Use the optional `autoImport`` parameter to trigger an immediate import of the data:
+
+```shell
+$ curl -X POST http://my-edge-site/v1/recordings \
+    -d '{"path": "path/to/log.mcap", "deviceName": "my-device", "autoImport": true}'
+```
+
+Once successfully uploaded to your edge site, your recording will appear on the [Recordings page](https://app.foxglove.dev/~/recordings) and be available via the recordings API endpoint.
+
+### Import to cloud
+
+To access data from your edge site, you must first import it to your Primary Site in the cloud.
+
+Queue import for any edge recording using the Foxglove API or the [Recordings page](https://app.foxglove.dev/~/recordings). The edge site will process this queue using available bandwidth resources.
+
+Once import to your Primary Site is complete, you can use the Foxglove API to access the recording.

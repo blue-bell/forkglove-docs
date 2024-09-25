@@ -1,0 +1,22 @@
+{
+  "logo.alt": {
+    "message": "Foxglove",
+    "description": "The alt text of navbar logo"
+  },
+  "item.label.Documentation": {
+    "message": "Documentation",
+    "description": "Navbar item with label Documentation"
+  },
+  "item.label.API Reference": {
+    "message": "API Reference",
+    "description": "Navbar item with label API Reference"
+  },
+  "item.label.Changelog": {
+    "message": "Changelog",
+    "description": "Navbar item with label Changelog"
+  },
+  "item.label.Back to Foxglove": {
+    "message": "Back to Foxglove",
+    "description": "Navbar item with label Back to Foxglove"
+  }
+}

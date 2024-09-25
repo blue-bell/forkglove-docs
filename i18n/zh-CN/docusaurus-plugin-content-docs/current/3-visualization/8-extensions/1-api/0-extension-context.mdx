@@ -1,0 +1,44 @@
+---
+title: Extension context
+description: The `ExtensionContext` allows you to extend Foxglove for your custom workflows.
+---
+
+The `activate` function's first argument is an `ExtensionContext` – this context allows you to extend Foxglove for your custom workflows.
+
+```typescript
+export function activate(extensionContext: ExtensionContext) {
+  // ... call methods on the extensionContext to extend Foxglove
+}
+```
+
+## registerPanel
+
+`registerPanel` adds a new panel to the Foxglove panel catalog. To register a panel you provide a `name` and an `initPanel` function.
+
+The `initPanel` function accepts a `PanelExtensionContext` argument, which contains properties and methods for accessing panel data and rendering UI updates. It also returns an optional cleanup function to run when the extension `panelElement` unmounts.
+
+See the [Creating a custom panel](/docs/visualization/extensions/guides/create-custom-panel) guide for more details.
+
+## registerMessageConverter
+
+`registerMessageConverter` register a function to convert messages from one schema to another.
+
+Message converters allow you to leverage Foxglove's built-in visualization panels by transforming messages to adhere to Foxglove-supported schemas — for example, you can convert your custom GPS messages to [`foxglove.LocationFix`](/docs/visualization/message-schemas/location-fix) messages for visualization in the [Map panel](/docs/visualization/panels/map).
+
+Whenever a panel subscribes to a topic with the [`convertTo`](/docs/visualization/extensions/api/panel#message-converters) option, the converter function runs on the original message and outputs the converted message, which it then provides it to the panel. If the function returns `undefined`, the output is ignored, and no message is provided to the panel. This is useful if you want to selectively output converted messages depending on the input messages' contents.
+
+See the [Creating a message converter](/docs/visualization/extensions/guides/create-message-converter) guide for more details.
+
+## registerTopicAliases
+
+`registerTopicAliases` registers a function to compute topic aliases. The provided alias function
+should accept an argument with two fields – `topics` with the data source's original topics and
+`globalVariables` with the current layout's variables – and return a list of aliased topics.
+
+Your alias function runs whenever there are changes to the data source topics or variables. Any
+aliases it returns are added to the data source topics (replacing any previously returned aliases)
+and available for subscribing or use within message paths as if they were real topics.
+
+## API Reference
+
+- [`@foxglove/studio`](pathname:///extension-api)
