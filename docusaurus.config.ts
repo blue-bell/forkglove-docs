@@ -14,7 +14,7 @@ import "redocusaurus";
 dotenvConfig();
 
 export default {
-  title: "Forklove",
+  title: "Forkglove",
   favicon: "img/favicon.ico",
   tagline: "The multimodal data visualization and management platform.",
   // Set the production url of your site here
@@ -71,7 +71,7 @@ export default {
           },
         ],
         theme: {
-          primaryColor: "#9480ed",
+          primaryColor: "#FF585F",
         },
       } satisfies RedocusaurusPresetOptions,
     ],
@@ -99,7 +99,7 @@ export default {
       title: undefined,
       logo: {
         alt: "Forkglove",
-        src: "img/foxglove-typemark-dark.svg",
+        src: "img/foxglove-typemark.svg",
         href: "/",
         target: "_self",
       },
