@@ -16,7 +16,7 @@ dotenvConfig();
 export default {
   title: "Forklove",
   favicon: "img/favicon.ico",
-
+  tagline: "The multimodal data visualization and management platform.",
   // Set the production url of your site here
   url: "https://forkglove.vercel.app",
   // Set the /<baseUrl>/ pathname under which your site is served
@@ -56,6 +56,7 @@ export default {
           blogDescription: "Changelog | Forklove",
           blogSidebarTitle: "Recent releases",
           showReadingTime: false,
+          onUntruncatedBlogPosts: "ignore",
         },
       } satisfies PresetClassic.Options,
     ],
@@ -133,7 +134,7 @@ export default {
     footer: {
       links: [
         {
-          title: "Foxglove",
+          title: "Forkglove",
           items: [
             { label: "Docs", to: "/" },
             // { label: "API reference", to: "/api" },

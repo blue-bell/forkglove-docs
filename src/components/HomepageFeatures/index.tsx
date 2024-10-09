@@ -10,38 +10,35 @@ type FeatureItem = {
 
 const FeatureList: FeatureItem[] = [
   {
-    title: 'Easy to Use',
+    title: 'Visualize all of your multimodal data.',
     Svg: require('@site/static/img/undraw_docusaurus_mountain.svg').default,
     description: (
       <>
-        Docusaurus was designed from the ground up to be easily installed and
-        used to get your website up and running quickly.
+        Choose from over 20 out-of-the-box panels to create interactive visualizations in customizable layouts. Stream your multimodal data, and share each layout to collaborate and quickly understand what your robot is doing.
       </>
     ),
   },
   {
-    title: 'Focus on What Matters',
+    title: 'Interact with your robots and analyze everything.',
     Svg: require('@site/static/img/undraw_docusaurus_tree.svg').default,
     description: (
       <>
-        Docusaurus lets you focus on your docs, and we&apos;ll do the chores. Go
-        ahead and move your docs into the <code>docs</code> directory.
+        Display and control your robots in an interactive 3D scene; share rich visualizations from live and recorded data of your robot’s mission and journey; and analyze everything to better understand how your robots move through the world.
       </>
     ),
   },
   {
-    title: 'Powered by React',
+    title: 'Customize and extend your workflows.',
     Svg: require('@site/static/img/undraw_docusaurus_react.svg').default,
     description: (
       <>
-        Extend or customize your website layout by reusing React. Docusaurus can
-        be extended while reusing the same header and footer.
+        Build bespoke panels, convert custom messages, alias topic names, and configure a set of layouts to support your team’s unique development workflows.
       </>
     ),
   },
 ];
 
-function Feature({title, Svg, description}: FeatureItem) {
+function Feature({ title, Svg, description }: FeatureItem) {
   return (
     <div className={clsx('col col--4')}>
       <div className="text--center">

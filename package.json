@@ -70,5 +70,8 @@
   "engines": {
     "node": ">=18.0"
   },
-  "packageManager": "yarn@3.6.1"
+  "packageManager": "yarn@3.6.1",
+  "dependencies": {
+    "@docusaurus/tsconfig": "3.5.2"
+  }
 }

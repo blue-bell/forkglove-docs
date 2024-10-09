@@ -2206,6 +2206,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@docusaurus/tsconfig@npm:3.5.2":
+  version: 3.5.2
+  resolution: "@docusaurus/tsconfig@npm:3.5.2"
+  checksum: 808a17eaf422ae9a948c6558dd1e92d4700b067ead3a63a84049c6845bf94f84e311cd0e4d517047fe9ea057efe393bb22c2d5c92d727d06c9f895e971f2c3ea
+  languageName: node
+  linkType: hard
+
 "@docusaurus/types@npm:3.5.2":
   version: 3.5.2
   resolution: "@docusaurus/types@npm:3.5.2"
@@ -5808,6 +5815,7 @@ __metadata:
     "@docusaurus/module-type-aliases": 3.5.2
     "@docusaurus/plugin-client-redirects": 3.5.2
     "@docusaurus/preset-classic": 3.5.2
+    "@docusaurus/tsconfig": 3.5.2
     "@foxglove/eslint-plugin": 1.0.1
     "@foxglove/schemas": 1.6.4
     "@foxglove/tsconfig": 2.0.0

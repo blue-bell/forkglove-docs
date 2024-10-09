@@ -1,13 +1,7 @@
-// -*- jsonc -*-
 {
-  "extends": "@foxglove/tsconfig/base",
-  "include": ["*.ts", "./src/**/*"],
+  // This file is not used in compilation. It is here just for a nice editor experience.
+  "extends": "@docusaurus/tsconfig",
   "compilerOptions": {
-    // From @docusaurus/tsconfig https://github.com/facebook/docusaurus/blob/main/packages/docusaurus-tsconfig/tsconfig.json
-    "noEmit": true,
-    "jsx": "preserve",
-    "module": "ES2022",
-    "moduleResolution": "bundler",
-    "types": ["node", "@docusaurus/module-type-aliases", "@docusaurus/theme-classic"]
+    "baseUrl": "."
   }
 }
